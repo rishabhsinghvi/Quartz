@@ -1,0 +1,12 @@
+{
+  "Background": {
+    "TEXTURE_NAME": "BackgroundImage",
+    "SCALE_X": 1.0,
+    "SCALE_Y":  1.0,
+    "USE_FULL_TEXTURE": true,
+    "X_COORD": 0,
+    "Y_COORD": 0,
+    "WIDTH": 0,
+    "HEIGHT": 0
+  }
+}
