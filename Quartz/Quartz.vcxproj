@@ -141,12 +141,14 @@
   <ItemGroup>
     <ClInclude Include="Quartz\Animation.h" />
     <ClInclude Include="Quartz\Application.h" />
+    <ClInclude Include="Quartz\GameState.h" />
     <ClInclude Include="Quartz\Renderer.h" />
     <ClInclude Include="Quartz\ResourceManager.h" />
     <ClInclude Include="Quartz\Tile.h" />
     <ClInclude Include="Quartz\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Configs\Audio.json" />
     <None Include="Resources\Configs\Sprites.json" />
     <None Include="Resources\Configs\Textures.json" />
   </ItemGroup>

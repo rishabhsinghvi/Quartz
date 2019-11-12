@@ -56,7 +56,7 @@ namespace Quartz
 			std::string spriteName = it.key();
 
 			auto spriteConfig = it.value();
-			auto texture = getTexture(spriteConfig["TEXTURE_NAME"]);
+			auto& texture = getTexture(spriteConfig["TEXTURE_NAME"]);
 			
 			sprite->setTexture(texture);
 
@@ -74,6 +74,43 @@ namespace Quartz
 			loadSprite(spriteName, std::move(sprite));
 			
 			std::cout << "Loaded Sprite: " << spriteName << '\n';
+		}
+	}
+
+	void ResourceManager::loadAudioFromFile(const std::string & filePath)
+	{
+		using json = nlohmann::json;
+
+		std::ifstream config(filePath);
+
+		if (!config)
+		{
+			std::cout << "Unable to open config file: " << filePath << '\n';
+			__debugbreak();
+		}
+
+		json root;
+		config >> root;
+
+		for (auto it = root.begin(); it != root.end(); it++)
+		{
+			auto name = it.key();
+
+			auto audioConfig = it.value();
+
+			std::string audioFile = audioConfig["FILE_PATH"];
+
+			if (audioConfig["STREAMABLE"])
+			{
+				m_musicDirectory[name] = std::move(audioFile);
+
+				std::cout << "Loaded Audio: " << name << '\n';
+				return;
+			}
+
+			loadSound(name, audioFile);
+
+			std::cout << "Loaded Audio: " << name << '\n'; 
 		}
 	}
 
@@ -178,7 +215,7 @@ namespace Quartz
 
 		if (sprite == m_spriteCache.end())
 		{
-			std::cout << "Unable to retrieve texture: " << spriteName << '\n';
+			std::cout << "Unable to retrieve sprite: " << spriteName << '\n';
 			__debugbreak();
 		}
 
@@ -191,14 +228,24 @@ namespace Quartz
 
 		if (sound == m_soundCache.end())
 		{
-			std::cout << "Unable to retrieve texture: " << soundName << '\n';
-			__debugbreak();
+			std::cout << "Unable to retrieve sound: " << soundName << '\n';
 		}
 
 		return *(sound->second);
 	}
 
+	void ResourceManager::playMusic(const std::string& soundName) const
+	{
+		auto sound = m_musicDirectory.find(soundName);
 
+		if (sound == m_musicDirectory.end())
+		{
+			std::cout << "Unable to retrieve file: " << soundName << '\n';
+			return;
+		}
+
+		// TODO
+	}
 
 
 

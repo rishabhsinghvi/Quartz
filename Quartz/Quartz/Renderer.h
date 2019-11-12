@@ -4,6 +4,7 @@
 #include<memory>
 
 #include "ResourceManager.h"
+#include "GameState.h"
 
 #include "SFML/Graphics.hpp"
 
@@ -13,9 +14,18 @@ namespace Quartz
 	{
 	private:
 		sf::RenderWindow* m_renderWindow = nullptr;
+		GameState m_gameState;
+
+		ResourceManager* m_resourceManager;
 
 	public:
-		void init(sf::RenderWindow* window);
+		void init(sf::RenderWindow* window, GameState gameState = GameState::SplashScreen);
+
+		void setGameState(GameState gs);
+
+		void setResourceManager(ResourceManager* rmanager);
+
+		void render();
 	};
 }
 

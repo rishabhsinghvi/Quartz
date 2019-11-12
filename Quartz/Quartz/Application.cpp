@@ -18,12 +18,13 @@ namespace Quartz
 		m_Window->init();
 		
 		m_Renderer->init(m_Window->getRenderWindow());
+		m_Renderer->setResourceManager(m_resourceManager.get());
 		
 		m_resourceManager->init();
 
 		m_resourceManager->loadTexturesFromFile("../Quartz/Resources/Configs/Textures.json");
 		m_resourceManager->loadSpritesFromFile("../Quartz/Resources/Configs/Sprites.json");
-
+		m_resourceManager->loadAudioFromFile("../Quartz/Resources/Configs/Audio.json");
 
 	}							
 
@@ -32,6 +33,8 @@ namespace Quartz
 		while (m_isRunning)
 		{
 			m_Window->clear();
+
+			m_Renderer->render();
 
 			m_Window->pollEvents();
 			m_Window->update();

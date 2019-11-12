@@ -53,9 +53,13 @@
     <ClInclude Include="Quartz\Tile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Quartz\GameState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Configs\Textures.json" />
     <None Include="Resources\Configs\Sprites.json" />
+    <None Include="Resources\Configs\Audio.json" />
   </ItemGroup>
 </Project>

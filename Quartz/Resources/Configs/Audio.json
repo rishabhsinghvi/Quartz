@@ -1,0 +1,6 @@
+{
+  "SPLASH_AUDIO": {
+    "FILE_PATH": "../Quartz/Resources/Audio/MainMenu.ogg",
+    "STREAMABLE":  true
+  }
+}
