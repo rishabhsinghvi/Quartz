@@ -7,6 +7,17 @@
 
 namespace Quartz
 {
+	const std::string getWorkingDirectory()
+	{
+		auto fullPath = std::filesystem::current_path().string();
+#ifdef USER_OS_WINDOWS
+		auto pos = fullPath.find_last_of('\\');
+#endif
+		return fullPath.substr(0, pos + 1);
+	}
+
+	extern const std::string DIRECTORY = getWorkingDirectory();
+
 	void Application::init()
 	{
 		m_Window = std::make_unique<Window>();
@@ -25,6 +36,8 @@ namespace Quartz
 		m_resourceManager->loadTexturesFromFile("../Quartz/Resources/Configs/Textures.json");
 		m_resourceManager->loadSpritesFromFile("../Quartz/Resources/Configs/Sprites.json");
 		m_resourceManager->loadAudioFromFile("../Quartz/Resources/Configs/Audio.json");
+
+		
 
 	}							
 

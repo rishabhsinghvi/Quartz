@@ -244,7 +244,15 @@ namespace Quartz
 			return;
 		}
 
-		// TODO
+		sf::Music music;
+
+		if (!music.openFromFile(sound->second))
+		{
+			std::cout << "Unable to open music file: " << sound->second << '\n';
+		}
+
+		music.setLoop(true);
+		music.play();
 	}
 
 

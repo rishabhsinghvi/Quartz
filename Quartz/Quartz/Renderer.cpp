@@ -1,5 +1,6 @@
 #include "Renderer.h"
 
+
 namespace Quartz
 {
 	void Renderer::init(sf::RenderWindow* window, GameState gameState)
@@ -26,7 +27,7 @@ namespace Quartz
 			{
 
 			m_renderWindow->draw(m_resourceManager->getSprite("SPLASH_SP"));
-			m_resourceManager->playMusic("SPLASH_AUDIO");
+			
 			break;
 			}
 		}

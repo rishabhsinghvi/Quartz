@@ -7,8 +7,16 @@
 
 
 #include<memory>
+#include<string>
+#include<filesystem>
 
 #include "SFML/Graphics.hpp"
+
+#if defined(_WIN32) || defined(_WIN64)
+	#define USER_OS_WINDOWS
+#elif defined(__unix__) || defined(__unix) || (defined(__APPLE__) && defined(__MACH__))
+	#define USER_OS_UNIX
+#endif
 
 namespace Quartz
 {
