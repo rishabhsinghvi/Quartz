@@ -22,32 +22,32 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{8B4E384A-9545-44A7-8022-91FDD1AD428D}</ProjectGuid>
     <RootNamespace>Quartz</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -138,23 +138,27 @@
     <ClCompile Include="Quartz.cpp" />
     <ClCompile Include="Quartz\Animation.cpp" />
     <ClCompile Include="Quartz\Application.cpp" />
-    <ClCompile Include="Quartz\Renderer.cpp" />
+    <ClCompile Include="Quartz\MainMenuState.cpp" />
     <ClCompile Include="Quartz\ResourceManager.cpp" />
+    <ClCompile Include="Quartz\UIButton.cpp" />
     <ClCompile Include="Quartz\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Quartz\Animation.h" />
     <ClInclude Include="Quartz\Application.h" />
+    <ClInclude Include="Quartz\DeviceContext.h" />
     <ClInclude Include="Quartz\GameState.h" />
-    <ClInclude Include="Quartz\Renderer.h" />
+    <ClInclude Include="Quartz\MainMenuState.h" />
     <ClInclude Include="Quartz\ResourceManager.h" />
     <ClInclude Include="Quartz\Tile.h" />
+    <ClInclude Include="Quartz\UIButton.h" />
+    <ClInclude Include="Quartz\UIElement.h" />
     <ClInclude Include="Quartz\Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Configs\Audio.json" />
-    <None Include="Resources\Configs\Sprites.json" />
-    <None Include="Resources\Configs\Textures.json" />
+    <None Include="Resources\Configs\MainMenu\Audio.json" />
+    <None Include="Resources\Configs\MainMenu\Sprites.json" />
+    <None Include="Resources\Configs\MainMenu\Textures.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

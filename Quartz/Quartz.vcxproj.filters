@@ -27,10 +27,13 @@
     <ClCompile Include="Quartz\ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Quartz\Renderer.cpp">
+    <ClCompile Include="Quartz\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Quartz\Animation.cpp">
+    <ClCompile Include="Quartz\UIButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Quartz\MainMenuState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,9 +47,6 @@
     <ClInclude Include="Quartz\ResourceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Quartz\Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Quartz\Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -56,10 +56,22 @@
     <ClInclude Include="Quartz\GameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Quartz\UIElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\DeviceContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\UIButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\MainMenuState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Configs\Textures.json" />
-    <None Include="Resources\Configs\Sprites.json" />
-    <None Include="Resources\Configs\Audio.json" />
+    <None Include="Resources\Configs\MainMenu\Audio.json" />
+    <None Include="Resources\Configs\MainMenu\Sprites.json" />
+    <None Include="Resources\Configs\MainMenu\Textures.json" />
   </ItemGroup>
 </Project>

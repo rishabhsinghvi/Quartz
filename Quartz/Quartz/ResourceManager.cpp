@@ -7,6 +7,10 @@
 
 namespace Quartz
 {
+	extern const std::string CONFIG_DIRECTORY;
+	extern const std::string TEXTURE_DIRECTORY;
+	extern const std::string AUDIO_DIRECTORY;
+
 	void ResourceManager::init()
 	{
 		// TODO
@@ -16,7 +20,7 @@ namespace Quartz
 	{
 		using json = nlohmann::json;
 
-		std::ifstream config(filePath);
+		std::ifstream config(CONFIG_DIRECTORY + filePath);
 
 		if (!config)
 		{
@@ -38,7 +42,7 @@ namespace Quartz
 	{
 		using json = nlohmann::json;
 
-		std::ifstream config(filePath);
+		std::ifstream config(CONFIG_DIRECTORY + filePath);
 
 		if (!config)
 		{
@@ -81,7 +85,7 @@ namespace Quartz
 	{
 		using json = nlohmann::json;
 
-		std::ifstream config(filePath);
+		std::ifstream config(CONFIG_DIRECTORY + filePath);
 
 		if (!config)
 		{

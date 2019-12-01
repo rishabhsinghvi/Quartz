@@ -2,8 +2,9 @@
 #define QUARTZ_APPLICATION_H
 
 #include "Window.h"
-#include "Renderer.h"
 #include "ResourceManager.h"
+#include "DeviceContext.h"
+
 
 
 #include<memory>
@@ -24,12 +25,13 @@ namespace Quartz
 	{
 	private:
 		std::unique_ptr<Window> m_Window;
-		std::unique_ptr<Renderer> m_Renderer;
 		std::unique_ptr<ResourceManager> m_resourceManager;
+		std::unique_ptr<DeviceContext> m_deviceContext;
 
 		bool m_isRunning = true;
 
 	public:
+		void setRunningState(bool val);
 
 		void init();
 
