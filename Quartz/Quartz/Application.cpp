@@ -23,6 +23,7 @@ namespace Quartz
 	extern const std::string TEXTURE_DIRECTORY = DIRECTORY + "Quartz/Resources/Textures/";
 	extern const std::string AUDIO_DIRECTORY = DIRECTORY + "Quartz/Resources/Audio/";
 	extern const std::string CONFIG_DIRECTORY = DIRECTORY + "Quartz/Resources/Configs/";
+	extern const std::string FONT_DIRECTORY = DIRECTORY + "Quartz/Resources/Fonts/";
 
 	void Application::setRunningState(bool val)
 	{

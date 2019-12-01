@@ -1,15 +1,17 @@
-#ifndef QUARTZ_UI_BUTTON_H
-#define QUARTZ_UI_BUTTON_H
+#ifndef QUARTZ_UI_TEXT_H
+#define QUARTZ_UI_TEXT_H
 
 #include "UIElement.h"
 
 #include "SFML/Graphics.hpp"
 
+#include<string>
+
 namespace Quartz
 {
 	extern const std::string FONT_DIRECTORY;
 
-	class UIButton : public UIElement
+	class UIText : public UIElement
 	{
 	private:
 		float m_centerX;
@@ -17,19 +19,19 @@ namespace Quartz
 		float m_scaleX;
 		float m_scaleY;
 		bool m_isText; // decides whether to draw text or texture
-		sf::Text m_Text; 
+		sf::Text m_Text;
 		sf::Font m_Font;
 		sf::Sprite m_Sprite;
 
 	public:
 
-		UIButton() = delete;
+		UIText() = delete;
 
 		// for text
-		UIButton(float centerX, float centerY, float scaleX, float scaleY, const std::string& str, const std::string& fontName = "QuiteMagical.ttf");
+		UIText(float centerX, float centerY, float scaleX, float scaleY, const std::string& str, const std::string& fontName = "QuiteMagical.ttf");
 
 		// for textures
-		UIButton(float centerX, float centerY, float scaleX, float scaleY, const sf::Sprite& sprite);
+		UIText(float centerX, float centerY, float scaleX, float scaleY, const sf::Sprite& sprite);
 
 		virtual bool contains(float x, float y) const override;
 
@@ -38,6 +40,5 @@ namespace Quartz
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 	};
 }
-
 
 #endif

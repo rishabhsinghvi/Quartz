@@ -141,6 +141,7 @@
     <ClCompile Include="Quartz\MainMenuState.cpp" />
     <ClCompile Include="Quartz\ResourceManager.cpp" />
     <ClCompile Include="Quartz\UIButton.cpp" />
+    <ClCompile Include="Quartz\UIText.cpp" />
     <ClCompile Include="Quartz\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +154,7 @@
     <ClInclude Include="Quartz\Tile.h" />
     <ClInclude Include="Quartz\UIButton.h" />
     <ClInclude Include="Quartz\UIElement.h" />
+    <ClInclude Include="Quartz\UIText.h" />
     <ClInclude Include="Quartz\Window.h" />
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,11 @@ namespace Quartz
 	class Window;
 	class Application;
 
+	/*
+	**  DeviceContext is simply a struct containing references to all the common subsystems.
+	**  
+	*/
+
 	struct DeviceContext
 	{
 		ResourceManager* m_resourceManager;

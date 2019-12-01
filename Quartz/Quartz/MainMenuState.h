@@ -10,6 +10,7 @@ namespace Quartz
 	{
 	private:
 		DeviceContext* m_deviceContext = nullptr;
+		sf::RenderWindow* m_renderWindow = nullptr;
 		bool m_Initialized = false;
 
 	public:
