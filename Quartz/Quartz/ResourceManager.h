@@ -22,6 +22,8 @@ namespace Quartz
 		
 		std::vector<std::unique_ptr<sf::SoundBuffer>> m_soundBuffers; // Need to do this so that SoundBuffer aren't deleted
 
+		sf::Music m_currentMusic;
+
 	public:
 
 		void init();
@@ -49,8 +51,11 @@ namespace Quartz
 
 		const sf::Sound& getSound(const std::string& soundName) const;
 
-		void playMusic(const std::string& soundName) const;
+		void playMusic(const std::string& soundName);
 
+		void pauseMusic();
+
+		void resumeMusic();
 	};
 }
 

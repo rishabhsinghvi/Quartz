@@ -3,6 +3,9 @@
 
 #include "GameState.h"
 #include "DeviceContext.h"
+#include "UIElement.h"
+
+#include<memory>
 
 namespace Quartz
 {
@@ -12,6 +15,7 @@ namespace Quartz
 		DeviceContext* m_deviceContext = nullptr;
 		sf::RenderWindow* m_renderWindow = nullptr;
 		bool m_Initialized = false;
+		std::vector<std::unique_ptr<UIElement>> m_UIEntities;
 
 	public:
 

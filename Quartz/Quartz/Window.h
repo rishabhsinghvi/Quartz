@@ -10,6 +10,7 @@ namespace Quartz
 	{
 	private:
 		std::unique_ptr<sf::RenderWindow> m_Window;	
+		std::unique_ptr<sf::Cursor> m_Cursor;
 	public:
 
 		void init();

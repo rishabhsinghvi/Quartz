@@ -8,7 +8,11 @@ namespace Quartz
 	void Window::init()
 	{
 		m_Window = std::make_unique<sf::RenderWindow>(sf::VideoMode::getFullscreenModes()[0], "Quartz", sf::Style::Fullscreen);
+		m_Cursor = std::make_unique<sf::Cursor>();
 		
+		if (m_Cursor->loadFromSystem(sf::Cursor::Hand))
+			m_Window->setMouseCursor(*m_Cursor);
+		//m_Window = std::make_unique<sf::RenderWindow>(sf::VideoMode(800, 600), "Quartz");
 	}
 
 	void Window::clear() const

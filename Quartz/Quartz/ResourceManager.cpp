@@ -238,7 +238,7 @@ namespace Quartz
 		return *(sound->second);
 	}
 
-	void ResourceManager::playMusic(const std::string& soundName) const
+	void ResourceManager::playMusic(const std::string& soundName)
 	{
 		auto sound = m_musicDirectory.find(soundName);
 
@@ -248,15 +248,23 @@ namespace Quartz
 			return;
 		}
 
-		sf::Music music;
-
-		if (!music.openFromFile(sound->second))
+		if (!m_currentMusic.openFromFile(sound->second))
 		{
 			std::cout << "Unable to open music file: " << sound->second << '\n';
 		}
 
-		music.setLoop(true);
-		music.play();
+		m_currentMusic.setLoop(true);
+		m_currentMusic.play();
+	}
+
+	void ResourceManager::pauseMusic()
+	{
+		m_currentMusic.pause();
+	}
+
+	void ResourceManager::resumeMusic()
+	{
+		m_currentMusic.play();
 	}
 
 
