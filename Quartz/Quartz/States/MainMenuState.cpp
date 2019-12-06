@@ -35,6 +35,23 @@ namespace Quartz
 		auto title = std::make_unique<UIText>(0.35f, 0.15f, 2.5f, 2.5f, "Quartz");
 		auto playButton = std::make_unique<UIButton>(0.48f, 0.5f, 0.5f, 0.5f, "Play");
 		auto exitButton = std::make_unique<UIButton>(0.48f, 0.6f, 0.5f, 0.5f, "Exit");
+
+		playButton->setCallback([](DeviceContext* dc)
+			{
+				AppEvent event;
+				event.eventType = EventType::StateChangeEvent;
+				event.m_Info.emplace<StateChangeEvent>("Playing");
+
+				dc->m_appEventQueue->addEventToQueue(event);
+			});
+
+		exitButton->setCallback([](DeviceContext* dc)
+			{
+				AppEvent event;
+				event.eventType = EventType::AppCloseEvent;
+
+				dc->m_appEventQueue->addEventToQueue(event);
+			});
 		
 		m_UIEntities.push_back(std::move(title));
 		m_UIEntities.push_back(std::move(playButton));
@@ -87,14 +104,18 @@ namespace Quartz
 				auto mousePos = sf::Mouse::getPosition(*m_renderWindow);
 
 				// Change this
-				if (m_UIEntities[2]->contains(mousePos.x, mousePos.y))
+				/*if (m_UIEntities[2]->contains(mousePos.x, mousePos.y))
 				{
-					AppEvent event;
-					event.eventType = EventType::StateChangeEvent;
-					event.m_Info.emplace<StateChangeEvent>("Exit");
-
-					m_deviceContext->m_appEventQueue->addEventToQueue(event);
+					
 					m_deviceContext->m_Application->setRunningState(false);
+				}*/
+
+				for (auto& x : m_UIEntities)
+				{
+					if (x->contains(mousePos.x, mousePos.y))
+					{
+						x->callback(m_deviceContext);
+					}
 				}
 			}
 			break;

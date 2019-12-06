@@ -34,8 +34,7 @@ namespace Quartz
 	}
 
 	UIButton::UIButton(float centerX, float centerY, float scaleX, float scaleY, const sf::Sprite& sprite):
-		m_centerX(centerX), m_centerY(centerY), m_scaleX(scaleX), m_scaleY(scaleY), m_isText(false), m_Sprite(sprite)
-	{
+		m_centerX(centerX), m_centerY(centerY), m_scaleX(scaleX), m_scaleY(scaleY), m_isText(false), m_Sprite(sprite) {
 		
 		m_Sprite.setPosition(m_centerX * WINDOW_WIDTH, m_centerY * WINDOW_HEIGHT);
 		m_Sprite.setScale(m_scaleX, m_scaleY);
@@ -92,6 +91,18 @@ namespace Quartz
 			target.draw(m_Sprite, states);
 		}
 	}
+
+	void UIButton::setCallback(const std::function<void(DeviceContext*)> callback)
+	{
+		m_Callback = callback;
+	}
+
+	void UIButton::callback(DeviceContext* dc)
+	{
+		m_Callback(dc);
+	}
+
+
 
 
 }

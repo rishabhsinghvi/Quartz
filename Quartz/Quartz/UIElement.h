@@ -6,16 +6,19 @@
 
 namespace Quartz
 {
+	struct DeviceContext;
+
 	class UIElement : public sf::Drawable, public sf::Transformable
 	{
 	public:
 		virtual bool contains(float x, float y) const = 0;
 
 		virtual void onHover(float x, float y) = 0;
+
+		virtual void callback(DeviceContext* dc) = 0;
 	private:
 
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
-
 
 	};
 }

@@ -25,10 +25,6 @@ namespace Quartz
 	extern const unsigned int WINDOW_WIDTH = sf::VideoMode::getDesktopMode().width;
 	extern const unsigned int WINDOW_HEIGHT = sf::VideoMode::getDesktopMode().height;
 
-	void Application::setRunningState(bool val)
-	{
-		m_isRunning = val;
-	}
 
 	void Application::init()
 	{
@@ -47,6 +43,7 @@ namespace Quartz
 		m_stateManager->init(m_deviceContext.get());
 
 		m_appEventQueue->registerObservable(EventType::StateChangeEvent, this);
+		m_appEventQueue->registerObservable(EventType::AppCloseEvent, this);
 		// Create EventMap
 		
 
@@ -90,6 +87,11 @@ namespace Quartz
 		case EventType::StateChangeEvent:
 		{
 			m_stateManager->loadState(std::get<StateChangeEvent>(event.m_Info).m_newState);
+			break;
+		}
+		case EventType::AppCloseEvent:
+		{
+			m_isRunning = false;
 			break;
 		}
 		}

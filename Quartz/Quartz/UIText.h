@@ -11,6 +11,8 @@ namespace Quartz
 {
 	extern const std::string FONT_DIRECTORY;
 
+	struct DeviceContext;
+
 	class UIText : public UIElement
 	{
 	private:
@@ -38,6 +40,8 @@ namespace Quartz
 		virtual void onHover(float x, float y) override;
 
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+		
+		virtual void callback(DeviceContext* dc) override;
 	};
 }
 

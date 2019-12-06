@@ -23,6 +23,8 @@
 
 namespace Quartz
 {
+	static const std::string getWorkingDirectory(); 
+
 	class Application: public Observable
 	{
 	private:
@@ -35,8 +37,7 @@ namespace Quartz
 		bool m_isRunning = true;
 
 	public:
-		void setRunningState(bool val);
-
+		
 		void init();
 
 		void run();

@@ -61,4 +61,9 @@ namespace Quartz
 			target.draw(m_Sprite, states);
 		}
 	}
+	void UIText::callback(DeviceContext* dc)
+	{
+		// NOTHING
+		// DON'T NEED CALLBACK FOR STATIC FONT
+	}
 }

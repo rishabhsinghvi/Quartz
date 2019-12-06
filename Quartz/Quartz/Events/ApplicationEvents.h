@@ -11,7 +11,8 @@ namespace Quartz
 	enum class EventType
 	{
 		None,
-		StateChangeEvent
+		StateChangeEvent,
+		AppCloseEvent
 	};
 
 	struct AppEvent;
@@ -39,10 +40,15 @@ namespace Quartz
 		~StateChangeEvent() = default;
 	};
 
+	struct AppCloseEvent
+	{
+		// NOTHING
+	};
+
 	struct AppEvent
 	{
 		EventType eventType = EventType::None;
-		std::variant<StateChangeEvent> m_Info;
+		std::variant<StateChangeEvent, AppCloseEvent> m_Info;
 
 		AppEvent() = default;
 
