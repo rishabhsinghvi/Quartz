@@ -19,7 +19,7 @@ namespace Quartz
 
 		void update() const;
 
-		void pollEvents() const;
+		std::vector<sf::Event> getPolledEvents() const;
 
 		sf::RenderWindow* getRenderWindow() const;
 	};

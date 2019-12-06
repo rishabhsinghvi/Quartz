@@ -11,12 +11,12 @@ namespace Quartz
 		unsigned int m_xOffset;
 		unsigned int m_yOffset;
 		
-		bool m_isGround;
+		bool m_Collidable;
 
 		Tile() = default;
 
-		Tile(unsigned int id, unsigned int x, unsigned int y, bool isGround = true) :
-			m_Id(id), m_xOffset(x), m_yOffset(y), m_isGround(isGround)
+		Tile(unsigned int id, unsigned int x, unsigned int y, bool collidable = false) :
+			m_Id(id), m_xOffset(x), m_yOffset(y), m_Collidable(collidable)
 		{
 			// EMPTY
 		}

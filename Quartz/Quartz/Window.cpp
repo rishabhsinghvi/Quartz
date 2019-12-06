@@ -1,7 +1,7 @@
 #include "Window.h"
 
 #include<iostream>
-
+#include<vector>
 
 namespace Quartz
 {
@@ -25,16 +25,17 @@ namespace Quartz
 		m_Window->display();
 	}
 
-	void Window::pollEvents() const
+	std::vector<sf::Event> Window::getPolledEvents() const
 	{
+		std::vector<sf::Event> events;
 		sf::Event event;
 		while (m_Window->pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
-			{
-				m_Window->close();
-			}
+			events.push_back(event);
 		}
+
+		return events;
+
 	}
 
 	/*

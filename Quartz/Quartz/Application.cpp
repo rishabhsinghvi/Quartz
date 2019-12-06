@@ -1,16 +1,13 @@
 #include "Application.h"
 
-#include "MainMenuState.h"
-
-
-
-#include "SFML/Audio.hpp"
-
 #include<string>
+#include<iostream>
+
 
 namespace Quartz
 {
-	const std::string getWorkingDirectory()
+	
+	static const std::string getWorkingDirectory()
 	{
 		auto fullPath = std::filesystem::current_path().string();
 #ifdef USER_OS_WINDOWS
@@ -35,35 +32,66 @@ namespace Quartz
 
 	void Application::init()
 	{
+		// Create and intialize all subsystems
 		m_Window = std::make_unique<Window>();
 		m_resourceManager = std::make_unique<ResourceManager>();
-
-
+		m_appEventQueue = std::make_unique<AppEventQueue>();
 
 		m_Window->init();
 		m_resourceManager->init();
+		
+		m_deviceContext = std::make_unique<DeviceContext>(m_resourceManager.get(), m_Window.get(), this, m_appEventQueue.get());
+
+		m_stateManager = std::make_unique<StateManager>();
+
+		m_stateManager->init(m_deviceContext.get());
+
+		m_appEventQueue->registerObservable(EventType::StateChangeEvent, this);
+		// Create EventMap
+		
+
+		// Load initial state
+		m_stateManager->loadState("MainMenu");
 
 		
-		// Create device context
-		m_deviceContext = std::make_unique<DeviceContext>(m_resourceManager.get(), m_Window.get(), this);
-
-		// TODO: Set device context
-
 	}							
 
 	void Application::run()
 	{
-		auto state = std::make_unique<MainMenuState>();
-		state->init(m_deviceContext.get());
 		while (m_isRunning)
 		{
+
+			auto state = m_stateManager->getCurrentState();
+
+			// Handle SFML events
+			auto events = m_Window->getPolledEvents();
+
+			for (auto& x : events)
+			{
+				state->handleInput(x);
+			}
+
+			// Handle Application events
+			m_appEventQueue->dispatchEvents();
+
+		
 			m_Window->clear();
 
 			state->render();
 
-			m_Window->pollEvents();
 			m_Window->update();
 		}
 		
+	}
+	void Application::handleApplicationEvent(AppEvent& event)
+	{
+		switch (event.eventType)
+		{
+		case EventType::StateChangeEvent:
+		{
+			m_stateManager->loadState(std::get<StateChangeEvent>(event.m_Info).m_newState);
+			break;
+		}
+		}
 	}
 }

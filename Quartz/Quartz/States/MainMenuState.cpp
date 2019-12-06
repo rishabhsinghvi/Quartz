@@ -3,9 +3,15 @@
 #include "Window.h"
 #include "UIButton.h"
 #include "UIText.h"
+#include "Application.h"
+#include "Events/ApplicationEvents.h"
+
+#include<iostream>
+#include<unordered_map>
 
 namespace Quartz
 {
+	
 	void MainMenuState::init(DeviceContext* dc)
 	{
 		if (m_Initialized)
@@ -72,7 +78,54 @@ namespace Quartz
 
 	void MainMenuState::handleInput(sf::Event& event)
 	{
+		switch (event.type)
+		{
+		case sf::Event::MouseButtonReleased:
+		{
+			if (event.mouseButton.button == sf::Mouse::Left)
+			{
+				auto mousePos = sf::Mouse::getPosition(*m_renderWindow);
 
+				// Change this
+				if (m_UIEntities[2]->contains(mousePos.x, mousePos.y))
+				{
+					AppEvent event;
+					event.eventType = EventType::StateChangeEvent;
+					event.m_Info.emplace<StateChangeEvent>("Exit");
+
+					m_deviceContext->m_appEventQueue->addEventToQueue(event);
+					m_deviceContext->m_Application->setRunningState(false);
+				}
+			}
+			break;
+		}
+
+		case sf::Event::LostFocus:
+		{
+			paused();
+			break;
+		}
+
+		case sf::Event::GainedFocus:
+		{
+			resumed();
+			break;
+		}
+
+		case sf::Event::KeyPressed:
+		{
+			if (event.key.code == sf::Keyboard::A)
+			{
+				std::cout << "A\n";
+			}
+		}
+
+		}
+	}
+
+	bool MainMenuState::isInitialized() const
+	{
+		return m_Initialized;
 	}
 
 

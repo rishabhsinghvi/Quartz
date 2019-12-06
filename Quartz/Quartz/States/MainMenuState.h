@@ -31,6 +31,8 @@ namespace Quartz
 		virtual void render() override;
 
 		virtual void handleInput(sf::Event& event) override;
+
+		virtual bool isInitialized() const override;
 	};
 }
 

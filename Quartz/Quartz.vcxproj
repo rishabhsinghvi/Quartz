@@ -136,21 +136,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Quartz.cpp" />
-    <ClCompile Include="Quartz\Animation.cpp" />
     <ClCompile Include="Quartz\Application.cpp" />
-    <ClCompile Include="Quartz\MainMenuState.cpp" />
+    <ClCompile Include="Quartz\Events\AppEventQueue.cpp" />
+    <ClCompile Include="Quartz\States\MainMenuState.cpp" />
     <ClCompile Include="Quartz\ResourceManager.cpp" />
+    <ClCompile Include="Quartz\StateManager.cpp" />
     <ClCompile Include="Quartz\UIButton.cpp" />
     <ClCompile Include="Quartz\UIText.cpp" />
     <ClCompile Include="Quartz\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Quartz\Animation.h" />
     <ClInclude Include="Quartz\Application.h" />
     <ClInclude Include="Quartz\DeviceContext.h" />
-    <ClInclude Include="Quartz\GameState.h" />
-    <ClInclude Include="Quartz\MainMenuState.h" />
+    <ClInclude Include="Quartz\Entity.h" />
+    <ClInclude Include="Quartz\Events\AppEventQueue.h" />
+    <ClInclude Include="Quartz\Events\ApplicationEvents.h" />
+    <ClInclude Include="Quartz\States\GameState.h" />
+    <ClInclude Include="Quartz\States\MainMenuState.h" />
     <ClInclude Include="Quartz\ResourceManager.h" />
+    <ClInclude Include="Quartz\StateManager.h" />
     <ClInclude Include="Quartz\Tile.h" />
     <ClInclude Include="Quartz\UIButton.h" />
     <ClInclude Include="Quartz\UIElement.h" />

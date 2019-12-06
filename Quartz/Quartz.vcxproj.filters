@@ -27,16 +27,19 @@
     <ClCompile Include="Quartz\ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Quartz\Animation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Quartz\UIButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Quartz\MainMenuState.cpp">
+    <ClCompile Include="Quartz\UIText.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Quartz\UIText.cpp">
+    <ClCompile Include="Quartz\StateManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Quartz\States\MainMenuState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Quartz\Events\AppEventQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,13 +53,7 @@
     <ClInclude Include="Quartz\ResourceManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Quartz\Animation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Quartz\Tile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Quartz\GameState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Quartz\UIElement.h">
@@ -68,10 +65,25 @@
     <ClInclude Include="Quartz\UIButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Quartz\MainMenuState.h">
+    <ClInclude Include="Quartz\UIText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Quartz\UIText.h">
+    <ClInclude Include="Quartz\StateManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\States\GameState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\States\MainMenuState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\Events\ApplicationEvents.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\Events\AppEventQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
