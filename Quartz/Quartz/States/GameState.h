@@ -22,6 +22,8 @@ namespace Quartz
 
 		virtual void render() = 0;
 
+		virtual void update(float dt) = 0;
+
 		virtual void handleInput(sf::Event& event) = 0;
 
 		virtual bool isInitialized() const = 0;

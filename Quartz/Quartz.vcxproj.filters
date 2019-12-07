@@ -42,6 +42,21 @@
     <ClCompile Include="Quartz\Events\AppEventQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Quartz\Entity\PlayerEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Quartz\Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Quartz\States\PlayingState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Quartz\Animation\Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Quartz\Animation\AnimatedSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Quartz\Application.h">
@@ -83,7 +98,22 @@
     <ClInclude Include="Quartz\Events\AppEventQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Quartz\Entity.h">
+    <ClInclude Include="Quartz\Entity\Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\Entity\PlayerEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\States\PlayingState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\Animation\Animation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\Animation\AnimatedSprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -91,5 +121,8 @@
     <None Include="Resources\Configs\MainMenu\Audio.json" />
     <None Include="Resources\Configs\MainMenu\Sprites.json" />
     <None Include="Resources\Configs\MainMenu\Textures.json" />
+    <None Include="Resources\Configs\Playing\Audio.json" />
+    <None Include="Resources\Configs\Playing\Textures.json" />
+    <None Include="Resources\Configs\Playing\Sprites.json" />
   </ItemGroup>
 </Project>

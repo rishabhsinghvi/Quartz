@@ -135,27 +135,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Quartz\Animation\AnimatedSprite.cpp" />
+    <ClCompile Include="Quartz\Animation\Animation.cpp" />
+    <ClCompile Include="Quartz\Entity\PlayerEntity.cpp" />
     <ClCompile Include="Quartz.cpp" />
     <ClCompile Include="Quartz\Application.cpp" />
     <ClCompile Include="Quartz\Events\AppEventQueue.cpp" />
     <ClCompile Include="Quartz\States\MainMenuState.cpp" />
     <ClCompile Include="Quartz\ResourceManager.cpp" />
     <ClCompile Include="Quartz\StateManager.cpp" />
+    <ClCompile Include="Quartz\States\PlayingState.cpp" />
+    <ClCompile Include="Quartz\Timer.cpp" />
     <ClCompile Include="Quartz\UIButton.cpp" />
     <ClCompile Include="Quartz\UIText.cpp" />
     <ClCompile Include="Quartz\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Quartz\Animation\AnimatedSprite.h" />
+    <ClInclude Include="Quartz\Animation\Animation.h" />
+    <ClInclude Include="Quartz\Entity\PlayerEntity.h" />
     <ClInclude Include="Quartz\Application.h" />
     <ClInclude Include="Quartz\DeviceContext.h" />
-    <ClInclude Include="Quartz\Entity.h" />
+    <ClInclude Include="Quartz\Entity\Entity.h" />
     <ClInclude Include="Quartz\Events\AppEventQueue.h" />
     <ClInclude Include="Quartz\Events\ApplicationEvents.h" />
     <ClInclude Include="Quartz\States\GameState.h" />
     <ClInclude Include="Quartz\States\MainMenuState.h" />
     <ClInclude Include="Quartz\ResourceManager.h" />
     <ClInclude Include="Quartz\StateManager.h" />
+    <ClInclude Include="Quartz\States\PlayingState.h" />
     <ClInclude Include="Quartz\Tile.h" />
+    <ClInclude Include="Quartz\Timer.h" />
     <ClInclude Include="Quartz\UIButton.h" />
     <ClInclude Include="Quartz\UIElement.h" />
     <ClInclude Include="Quartz\UIText.h" />
@@ -165,6 +175,9 @@
     <None Include="Resources\Configs\MainMenu\Audio.json" />
     <None Include="Resources\Configs\MainMenu\Sprites.json" />
     <None Include="Resources\Configs\MainMenu\Textures.json" />
+    <None Include="Resources\Configs\Playing\Audio.json" />
+    <None Include="Resources\Configs\Playing\Sprites.json" />
+    <None Include="Resources\Configs\Playing\Textures.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

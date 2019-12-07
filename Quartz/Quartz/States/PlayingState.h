@@ -1,21 +1,21 @@
-#ifndef QUARTZ_MAIN_MENU_STATE_H
-#define QUARTZ_MAIN_MENU_STATE_H
+#ifndef QUARTZ_PLAYING_STATE_H
+#define QUARTZ_PLAYING_STATE_H
 
 #include "GameState.h"
-#include "DeviceContext.h"
 #include "UIElement.h"
-
-#include<memory>
+#include "Entity/Entity.h"
+#include "Entity/PlayerEntity.h"
 
 namespace Quartz
 {
-	class MainMenuState : public GameState
+	class PlayingState : public GameState
 	{
 	private:
 		DeviceContext* m_deviceContext = nullptr;
 		sf::RenderWindow* m_renderWindow = nullptr;
 		bool m_Initialized = false;
 		std::vector<std::unique_ptr<UIElement>> m_UIEntities;
+		std::vector<std::unique_ptr<Entity>> m_Entities;
 
 	public:
 

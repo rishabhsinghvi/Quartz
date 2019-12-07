@@ -15,8 +15,11 @@ namespace Quartz
 	void MainMenuState::init(DeviceContext* dc)
 	{
 		if (m_Initialized)
+		{
+			m_deviceContext->m_resourceManager->pauseMusic();
+			m_deviceContext->m_resourceManager->playMusic("SPLASH_AUDIO");
 			return;
-
+		}
 
 	
 		m_deviceContext = dc;
@@ -28,7 +31,6 @@ namespace Quartz
 
 		m_renderWindow = m_deviceContext->m_Window->getRenderWindow();
 
-		m_deviceContext->m_resourceManager->playMusic("SPLASH_AUDIO");
 
 
 		// Create UI Elements
@@ -57,6 +59,7 @@ namespace Quartz
 		m_UIEntities.push_back(std::move(playButton));
 		m_UIEntities.push_back(std::move(exitButton));
 
+		m_deviceContext->m_resourceManager->playMusic("SPLASH_AUDIO");
 
 		m_Initialized = true;
 	}
@@ -91,6 +94,11 @@ namespace Quartz
 			ui->onHover(mousePos.x, mousePos.y);
 			m_renderWindow->draw(*ui);
 		}
+	}
+
+	void MainMenuState::update(float dt)
+	{
+		// NOTHING 
 	}
 
 	void MainMenuState::handleInput(sf::Event& event)

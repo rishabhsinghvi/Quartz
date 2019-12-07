@@ -34,7 +34,6 @@ namespace Quartz
 		for (auto it = root.begin(); it != root.end(); it++)
 		{
 			loadTexture(it.key(), it.value());
-			std::cout << "Loaded Texture: " << it.key() << '\n';
 		}
 	}
 
@@ -135,6 +134,7 @@ namespace Quartz
 		}
 
 		m_textureCache[textureName] = std::move(texture);
+		std::cout << "Loaded Texture: " << textureName << '\n';
 	}
 
 	void ResourceManager::loadTexture(const std::string & textureName, std::unique_ptr<sf::Texture> texture)
@@ -211,6 +211,19 @@ namespace Quartz
 		}
 
 		return *(texture->second);
+	}
+
+	sf::Texture* ResourceManager::getTexturePointer(const std::string& textureName) const
+	{
+		auto texture = m_textureCache.find(textureName);
+
+		if (texture == m_textureCache.end())
+		{
+			std::cout << "Unable to retrieve texture: " << textureName << '\n';
+			__debugbreak();
+		}
+
+		return texture->second.get();
 	}
 
 	const sf::Sprite & ResourceManager::getSprite(const std::string & spriteName) const

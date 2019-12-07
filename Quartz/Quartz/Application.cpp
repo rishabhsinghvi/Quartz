@@ -74,6 +74,7 @@ namespace Quartz
 		
 			m_Window->clear();
 
+			state->update(0.0f);
 			state->render();
 
 			m_Window->update();
