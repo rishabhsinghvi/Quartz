@@ -78,6 +78,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\Quartz\Quartz;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PreprocessorDefinitions>QUARTZ_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Quartz\External\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -135,15 +136,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Quartz\Animation\AnimatedSprite.cpp" />
     <ClCompile Include="Quartz\Animation\Animation.cpp" />
     <ClCompile Include="Quartz\Entity\PlayerEntity.cpp" />
     <ClCompile Include="Quartz.cpp" />
     <ClCompile Include="Quartz\Application.cpp" />
     <ClCompile Include="Quartz\Events\AppEventQueue.cpp" />
+    <ClCompile Include="Quartz\Math\Vec2.cpp" />
     <ClCompile Include="Quartz\States\MainMenuState.cpp" />
     <ClCompile Include="Quartz\ResourceManager.cpp" />
     <ClCompile Include="Quartz\StateManager.cpp" />
+    <ClCompile Include="Quartz\States\PausedState.cpp" />
     <ClCompile Include="Quartz\States\PlayingState.cpp" />
     <ClCompile Include="Quartz\Timer.cpp" />
     <ClCompile Include="Quartz\UIButton.cpp" />
@@ -151,7 +153,6 @@
     <ClCompile Include="Quartz\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Quartz\Animation\AnimatedSprite.h" />
     <ClInclude Include="Quartz\Animation\Animation.h" />
     <ClInclude Include="Quartz\Entity\PlayerEntity.h" />
     <ClInclude Include="Quartz\Application.h" />
@@ -159,10 +160,12 @@
     <ClInclude Include="Quartz\Entity\Entity.h" />
     <ClInclude Include="Quartz\Events\AppEventQueue.h" />
     <ClInclude Include="Quartz\Events\ApplicationEvents.h" />
+    <ClInclude Include="Quartz\Math\Vec2.h" />
     <ClInclude Include="Quartz\States\GameState.h" />
     <ClInclude Include="Quartz\States\MainMenuState.h" />
     <ClInclude Include="Quartz\ResourceManager.h" />
     <ClInclude Include="Quartz\StateManager.h" />
+    <ClInclude Include="Quartz\States\PausedState.h" />
     <ClInclude Include="Quartz\States\PlayingState.h" />
     <ClInclude Include="Quartz\Tile.h" />
     <ClInclude Include="Quartz\Timer.h" />

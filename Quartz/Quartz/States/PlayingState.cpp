@@ -2,10 +2,12 @@
 #include "DeviceContext.h"
 #include "ResourceManager.h"
 #include "Window.h"
-#include "Animation/Animation.h"
-#include "Animation/AnimatedSprite.h"
 #include "Events/ApplicationEvents.h"
 #include "Events/AppEventQueue.h"
+
+#ifdef QUARTZ_DEBUG
+#include<iostream>
+#endif
 
 namespace Quartz
 {
@@ -21,40 +23,28 @@ namespace Quartz
 		m_deviceContext->m_resourceManager->loadTexturesFromFile("Playing/Textures.json");
 		m_deviceContext->m_resourceManager->loadSpritesFromFile("Playing/Sprites.json");
 
-		
-		//
 
 		m_deviceContext->m_resourceManager->loadTexture("REAPER_FALLING_SHEET", "C:\\Users\\rdpsi\\Downloads\\output-onlinepngtools.png");
 
-		auto animation = std::make_unique<Animation>();
-		animation->setTexture(m_deviceContext->m_resourceManager->getTexturePointer("REAPER_FALLING_SHEET"));
-
-		animation->addFrame(sf::IntRect(0, 0, 100, 100));
-		animation->addFrame(sf::IntRect(100, 0, 100, 100));
-		animation->addFrame(sf::IntRect(0, 100, 100, 100));
-		animation->addFrame(sf::IntRect(100, 100, 100, 100));
-		animation->addFrame(sf::IntRect(0, 200, 100, 100));
-		animation->addFrame(sf::IntRect(100, 200, 100, 100));
-
-		AnimatedSprite sprite;
-		sprite.setFrameTime(0.2f);
-		sprite.setLooping(false);
+		sf::Sprite sprite;
+		sprite.setTexture(m_deviceContext->m_resourceManager->getTexture("REAPER_FALLING_SHEET"));
 		sprite.setPosition(0.0f, 0.0f);
+		sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
+
+		auto entity = std::make_unique<PlayerEntity>(m_deviceContext);
+
+		entity->setSprite(sprite);
+
+		anim.setSprite(entity->getSprite());
+		anim.addFrame({ sf::IntRect(0, 0, 100, 100), 0.2f });
+		anim.addFrame({ sf::IntRect(100, 0, 100, 100), 0.2f });
+		anim.addFrame({ sf::IntRect(0, 100, 100, 100), 0.2f });
+		anim.addFrame({ sf::IntRect(100, 100, 100, 100), 0.2f });
+		anim.addFrame({ sf::IntRect(0, 200, 100, 100), 0.2f });
+		anim.addFrame({ sf::IntRect(100, 200, 100, 100), 0.2f });
 
 
-		auto ptr = std::make_unique<PlayerEntity>(m_deviceContext);
-
-		ptr->setSprite(sprite);
-		ptr->pushAnimation("FALLING", std::move(animation));
-		ptr->setAnimation("FALLING");
-		ptr->startAnimation();
-
-		
-
-
-		//
-
-
+		m_Entities.push_back(std::move(entity));
 
 		m_deviceContext->m_resourceManager->playMusic("PLAYING_AUDIO");
 
@@ -86,7 +76,7 @@ namespace Quartz
 
 	void PlayingState::update(float dt)
 	{
-		// NOTHING FOR NOW
+		anim.update(dt);
 	}
 
 	void PlayingState::handleInput(sf::Event& event)
@@ -99,7 +89,7 @@ namespace Quartz
 			{
 				AppEvent event;
 				event.eventType = EventType::StateChangeEvent;
-				event.m_Info.emplace<StateChangeEvent>("MainMenu");
+				event.m_Info.emplace<StateChangeEvent>("Paused");
 
 				m_deviceContext->m_appEventQueue->addEventToQueue(event);
 			}

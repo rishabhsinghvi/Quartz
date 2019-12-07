@@ -18,6 +18,8 @@ namespace Quartz
 
 		virtual void render() const = 0;
 
+		virtual sf::Sprite* getSprite() = 0;
+
 	};
 }
 

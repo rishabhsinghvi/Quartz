@@ -9,6 +9,8 @@ namespace Quartz
 	{
 	private:
 		std::chrono::time_point<std::chrono::high_resolution_clock> m_startTime;
+		std::chrono::time_point<std::chrono::high_resolution_clock> m_endTime;
+
 	public:
 
 		Timer() = default;
@@ -17,7 +19,7 @@ namespace Quartz
 
 		void stop();
 
-		void getDeltaT();
+		float getDeltaT();
 
 	};
 }

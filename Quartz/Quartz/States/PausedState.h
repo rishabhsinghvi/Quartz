@@ -1,29 +1,22 @@
-#ifndef QUARTZ_PLAYING_STATE_H
-#define QUARTZ_PLAYING_STATE_H
+#ifndef QUARTZ_PAUSED_STATE_H
+#define QUARTZ_PAUSED_STATE_H
+
 
 #include "GameState.h"
 #include "UIElement.h"
-#include "Entity/Entity.h"
-#include "Entity/PlayerEntity.h"
-#include "Animation/Animation.h"
+
 
 namespace Quartz
 {
-	class PlayingState : public GameState
+	class PausedState : public GameState
 	{
 	private:
 		DeviceContext* m_deviceContext = nullptr;
 		sf::RenderWindow* m_renderWindow = nullptr;
 		bool m_Initialized = false;
 		std::vector<std::unique_ptr<UIElement>> m_UIEntities;
-		std::vector<std::unique_ptr<Entity>> m_Entities;
-
-		//
-
-		Animation anim;
 
 	public:
-
 
 		virtual void init(DeviceContext* dc) override;
 
@@ -40,6 +33,7 @@ namespace Quartz
 		virtual void handleInput(sf::Event& event) override;
 
 		virtual bool isInitialized() const override;
+
 	};
 }
 

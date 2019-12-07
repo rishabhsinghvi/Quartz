@@ -1,6 +1,7 @@
 #ifndef QUARTZ_APPLICATION_H
 #define QUARTZ_APPLICATION_H
 
+#include "Timer.h"
 #include "Window.h"
 #include "ResourceManager.h"
 #include "DeviceContext.h"
@@ -33,6 +34,7 @@ namespace Quartz
 		std::unique_ptr<DeviceContext> m_deviceContext;
 		std::unique_ptr<StateManager> m_stateManager;
 		std::unique_ptr<AppEventQueue> m_appEventQueue;
+		std::unique_ptr<Timer> m_Timer;
 
 		bool m_isRunning = true;
 

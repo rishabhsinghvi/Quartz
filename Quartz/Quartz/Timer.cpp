@@ -10,17 +10,19 @@ namespace Quartz
 	void Timer::stop()
 	{
 		auto endTime = std::chrono::high_resolution_clock::now();
-
-		auto castedStartTime = std::chrono::time_point_cast<std::chrono::microseconds>(m_startTime).time_since_epoch().count();
-		auto castedEndTime = std::chrono::time_point_cast<std::chrono::microseconds>(endTime).time_since_epoch().count();
-
-		auto castedDuration = castedEndTime - castedStartTime;
 	}
 
-	void Timer::getDeltaT()
+	float Timer::getDeltaT()
 	{
+		auto endTime = std::chrono::high_resolution_clock::now();
 
+		auto dt = std::chrono::duration_cast<std::chrono::microseconds>(endTime - m_startTime).count();
+
+		m_startTime = endTime;
+
+		return dt * 1e-6; // return in seconds
 	}
+
 
 	
 }

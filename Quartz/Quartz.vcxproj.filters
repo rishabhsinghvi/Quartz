@@ -51,10 +51,13 @@
     <ClCompile Include="Quartz\States\PlayingState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Quartz\Animation\Animation.cpp">
+    <ClCompile Include="Quartz\States\PausedState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Quartz\Animation\AnimatedSprite.cpp">
+    <ClCompile Include="Quartz\Math\Vec2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Quartz\Animation\Animation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -110,10 +113,13 @@
     <ClInclude Include="Quartz\States\PlayingState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Quartz\Animation\Animation.h">
+    <ClInclude Include="Quartz\States\PausedState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Quartz\Animation\AnimatedSprite.h">
+    <ClInclude Include="Quartz\Math\Vec2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\Animation\Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

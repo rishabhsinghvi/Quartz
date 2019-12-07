@@ -2,9 +2,8 @@
 #define QUARTZ_PLAYER_ENTITY_H
 
 #include "Entity.h"
-#include "Animation/Animation.h"
-#include "Animation/AnimatedSprite.h"
 #include "DeviceContext.h"
+#include "Math/Vec2.h"
 
 #include <unordered_map>
 #include <string>
@@ -15,28 +14,23 @@ namespace Quartz
 	class PlayerEntity : public Entity
 	{
 	private:
-		std::unordered_map<std::string, std::unique_ptr<Animation>> m_AnimationList;
-		AnimatedSprite m_Sprite;
-		Animation* m_currentAnimation;
 		DeviceContext* m_deviceContext;
-
+		sf::Sprite m_Sprite;
+		Vec2 m_Pos;
+		Vec2 m_Vel;
+		Vec2 m_Acc;
 
 	public:
 
 		PlayerEntity(DeviceContext* w);
 
-		void setSprite(const AnimatedSprite& sprite);
-
-		void pushAnimation(const std::string&, std::unique_ptr<Animation>&& anim);
-
-		void startAnimation();
-
-		void setAnimation(const std::string& anim);
+		void setSprite(const sf::Sprite& sprite); 
 
 		virtual void update(float dt) override;
 
 		virtual void render() const override;
-
+		
+		virtual sf::Sprite* getSprite() override;
 		
 
 	};

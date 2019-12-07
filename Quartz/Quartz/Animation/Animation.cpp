@@ -2,33 +2,67 @@
 
 namespace Quartz
 {
-	Animation::Animation(sf::Texture* tex): m_Texture(tex)
+	Animation::Animation(sf::Sprite* sprite): m_Sprite(sprite)
 	{
 	}
 
-	void Animation::addFrame(const sf::IntRect& intRect)
+	void Animation::setSprite(sf::Sprite* sprite)
 	{
-		m_animFrames.push_back(intRect);
+		m_Sprite = sprite;
 	}
 
-	void Animation::setTexture(sf::Texture* tex)
+	void Animation::addFrame(const Frame& frame)
 	{
-		m_Texture = tex;
+		m_totalAnimationTime += frame.m_Duration;
+		m_Frames.push_back(frame);
 	}
 
-	sf::Texture* Animation::getTexture() const
+	void Animation::addFrame(Frame&& frame)
 	{
-		return m_Texture;
+		m_totalAnimationTime += frame.m_Duration;
+		m_Frames.push_back(std::move(frame));
 	}
 
-	const sf::IntRect& Animation::getFrame(int t) const
+	void Animation::update(float dt)
 	{
-		return m_animFrames.at(t);
+		m_currentTime += dt;
+	
+		float p = 0.0f;
+
+		for (auto i = 0; i <= m_currentFrameIndex; i++)
+		{
+			p += m_Frames[i].m_Duration;
+		}
+
+		
+
+		if (m_currentTime >= p)
+		{
+			if (m_currentFrameIndex == m_Frames.size() - 1)
+			{
+				reset();
+			}
+			else
+			{
+				m_currentFrameIndex += 1;
+			}
+		}
+
+		m_Sprite->setTextureRect(m_Frames[m_currentFrameIndex].m_Rect);
+		
 	}
 
-	int Animation::getNumFrames() const
+
+
+	float Animation::getLength() const
 	{
-		return m_animFrames.size();
+		return m_totalAnimationTime;
+	}
+
+	void Animation::reset()
+	{
+		m_currentFrameIndex = 0;
+		m_currentTime = 0.0f;
 	}
 
 

@@ -1,5 +1,6 @@
 #include "StateManager.h"
 #include "States/PlayingState.h"
+#include "States/PausedState.h"
 
 #include<iostream>
 
@@ -9,9 +10,11 @@ namespace Quartz
 	{
 		auto mainMenuState = std::make_unique<MainMenuState>();
 		auto playingState = std::make_unique<PlayingState>();
+		auto pausedState = std::make_unique<PausedState>();
 
 		m_GameStates["MainMenu"] = std::move(mainMenuState);
 		m_GameStates["Playing"] = std::move(playingState);
+		m_GameStates["Paused"] = std::move(pausedState);
 
 		m_DeviceContext = dc;
 	}

@@ -28,6 +28,7 @@ namespace Quartz
 
 	void Application::init()
 	{
+		m_Timer = std::make_unique<Timer>();
 		// Create and intialize all subsystems
 		m_Window = std::make_unique<Window>();
 		m_resourceManager = std::make_unique<ResourceManager>();
@@ -55,8 +56,11 @@ namespace Quartz
 
 	void Application::run()
 	{
+
+		m_Timer->reset();
 		while (m_isRunning)
 		{
+			auto dt = m_Timer->getDeltaT();
 
 			auto state = m_stateManager->getCurrentState();
 
@@ -74,7 +78,7 @@ namespace Quartz
 		
 			m_Window->clear();
 
-			state->update(0.0f);
+			state->update(dt);
 			state->render();
 
 			m_Window->update();

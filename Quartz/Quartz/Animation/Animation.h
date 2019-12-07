@@ -1,32 +1,48 @@
 #ifndef QUARTZ_ANIMATION_H
 #define QUARTZ_ANIMATION_H
 
-#include "SFML/Graphics/Rect.hpp"
-#include "SFML/Graphics/Texture.hpp"
+#include "SFML/Graphics.hpp"
 
-#include<vector>
+#include <vector>
 
 namespace Quartz
 {
+	struct Frame
+	{
+		sf::IntRect m_Rect;
+		float m_Duration;
+	};
+
 	class Animation
 	{
 	private:
-		std::vector<sf::IntRect> m_animFrames;
-		sf::Texture* m_Texture = nullptr;
+		std::vector<Frame> m_Frames;
+		float m_totalAnimationTime = 0.0f;
+		float m_currentTime = 0.0f;
+		float m_currentFrameIndex = 0; 
+		sf::Sprite* m_Sprite = nullptr;
 
 	public:
+
 		Animation() = default;
-		Animation(sf::Texture* tex);
 
-		void addFrame(const sf::IntRect& intRect);
+		Animation(sf::Sprite* sprite);
 
-		void setTexture(sf::Texture* tex);
+		void setSprite(sf::Sprite* sprite);
 
-		sf::Texture* getTexture() const;
+		void addFrame(const Frame& frame);
+		void addFrame(Frame&& frame);
 
-		const sf::IntRect& getFrame(int t) const;
+		void update(float dt);
 
-		int getNumFrames() const;
+		float getLength() const;
+
+		void reset();
+
 	};
+
+
 }
+
+
 #endif
