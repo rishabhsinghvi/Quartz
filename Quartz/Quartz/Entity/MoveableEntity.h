@@ -1,5 +1,5 @@
-#ifndef QUARTZ_PLAYER_ENTITY_H
-#define QUARTZ_PLAYER_ENTITY_H
+#ifndef QUARTZ_MOVEABLE_ENTITY_H
+#define QUARTZ_MOVEABLE_ENTITY_H
 
 #include "Entity.h"
 #include "DeviceContext.h"
@@ -19,7 +19,7 @@ namespace Quartz
 		{
 			Left, Right
 		};
-	private:
+	protected:
 		DeviceContext* m_deviceContext;
 		Animation* m_Animation = nullptr;
 		sf::Sprite m_Sprite;
@@ -36,7 +36,7 @@ namespace Quartz
 
 		MoveableEntity(DeviceContext* w);
 
-		void setSprite(const sf::Sprite& sprite); 
+		virtual void setSprite(const sf::Sprite& sprite); 
 
 		virtual void update(float dt) override;
 
@@ -44,21 +44,21 @@ namespace Quartz
 		
 		virtual sf::Sprite* getSprite() override;
 
-		void setPosition(const Vec2& pos);
+		virtual void setPosition(const Vec2& pos);
 
-		void setVelocity(const Vec2& vel);
+		virtual	void setVelocity(const Vec2& vel);
 
-		void setAcceleration(const Vec2& vel);
+		virtual void setAcceleration(const Vec2& vel);
 
-		void setDirection(Direction dir);
+		virtual void setDirection(Direction dir);
 
-		Direction getDirection() const;
+		virtual Direction getDirection() const;
 
-		void createAnimationList(const std::string& fileName);
+		virtual void createAnimationList(const std::string& fileName);
 		
-		void setAnimation(const std::string& name);
+		virtual void setAnimation(const std::string& name);
 
-		void setSpriteDimensions(unsigned int w, unsigned int h);
+		virtual void setSpriteDimensions(unsigned int w, unsigned int h);
 
 	};
 }

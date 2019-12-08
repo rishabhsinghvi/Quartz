@@ -5,6 +5,7 @@
 #include "Events/ApplicationEvents.h"
 #include "Events/AppEventQueue.h"
 #include "Entity/MoveableEntity.h"
+#include "Entity/PlayerEntity.h"
 
 #ifdef QUARTZ_DEBUG
 #include<iostream>
@@ -39,42 +40,12 @@ namespace Quartz
 		sprite.setPosition(0.0f, 0.0f);
 		sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
 
-		auto entity = std::make_unique<MoveableEntity>(m_deviceContext);
+		auto entity = std::make_unique<PlayerEntity>(m_deviceContext);
 		entity->setSprite(sprite);
 		entity->setVelocity(Vec2(100.0f, 0.0f));
 
 		entity->createAnimationList("Reaper.json");
 		entity->setAnimation("WALKING_RIGHT");
-
-		/*anim.setSprite(entity->getSprite());
-		anim.addFrame({ sf::IntRect(0, 0, 100, 100), 0.05f });
-		anim.addFrame({ sf::IntRect(0, 101, 100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(101,0,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(101,101,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(0,202,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(101,202,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(202,0,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(202,101,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(202,202,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(0,303,100,100), 0.05f });
-
-		anim.addFrame({ sf::IntRect(101,303,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(202,303,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(303,0,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(303,101,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(303,202,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(303,303,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(0,404,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(101,404,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(202,404,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(303,404,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(404,0,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(404,101,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(404,202,100,100), 0.05f });
-		anim.addFrame({ sf::IntRect(404,303,100,100), 0.05f });
-
-*/
-
 
 		m_Entities.push_back(std::move(entity));
 
