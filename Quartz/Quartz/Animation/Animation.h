@@ -21,6 +21,7 @@ namespace Quartz
 		float m_currentTime = 0.0f;
 		float m_currentFrameIndex = 0; 
 		sf::Sprite* m_Sprite = nullptr;
+		bool m_Looping = true;
 
 	public:
 
@@ -32,12 +33,15 @@ namespace Quartz
 
 		void addFrame(const Frame& frame);
 		void addFrame(Frame&& frame);
+		void addFrame(int x, int y, int w, int h, float dur);
 
 		void update(float dt);
 
 		float getLength() const;
 
 		void reset();
+
+		void setLooping(bool val);
 
 	};
 

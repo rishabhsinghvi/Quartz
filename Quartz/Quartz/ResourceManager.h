@@ -49,7 +49,9 @@ namespace Quartz
 
 		sf::Texture* getTexturePointer(const std::string& textureName) const;
 
-		const sf::Sprite& getSprite(const std::string& spriteName) const;
+		sf::Sprite getSprite(const std::string& spriteName) const;
+
+		const sf::Sprite& getSpriteRef(const std::string& spriteName) const;
 
 		const sf::Sound& getSound(const std::string& soundName) const;
 

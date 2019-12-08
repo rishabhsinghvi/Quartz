@@ -23,6 +23,12 @@ namespace Quartz
 		m_Frames.push_back(std::move(frame));
 	}
 
+	void Animation::addFrame(int x, int y, int w, int h, float dur)
+	{
+		sf::IntRect rect(x, y, w, h);
+		addFrame({ std::move(rect), dur });
+	}
+
 	void Animation::update(float dt)
 	{
 		m_currentTime += dt;
@@ -38,7 +44,7 @@ namespace Quartz
 
 		if (m_currentTime >= p)
 		{
-			if (m_currentFrameIndex == m_Frames.size() - 1)
+			if (m_currentFrameIndex == m_Frames.size() - 1 && m_Looping)
 			{
 				reset();
 			}
@@ -63,6 +69,11 @@ namespace Quartz
 	{
 		m_currentFrameIndex = 0;
 		m_currentTime = 0.0f;
+	}
+
+	void Animation::setLooping(bool val)
+	{
+		m_Looping = false;
 	}
 
 

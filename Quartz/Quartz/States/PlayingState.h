@@ -4,7 +4,6 @@
 #include "GameState.h"
 #include "UIElement.h"
 #include "Entity/Entity.h"
-#include "Entity/PlayerEntity.h"
 #include "Animation/Animation.h"
 
 namespace Quartz
@@ -20,7 +19,6 @@ namespace Quartz
 
 		//
 
-		Animation anim;
 
 	public:
 

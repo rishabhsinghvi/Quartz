@@ -42,9 +42,6 @@
     <ClCompile Include="Quartz\Events\AppEventQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Quartz\Entity\PlayerEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Quartz\Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -58,6 +55,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Quartz\Animation\Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Quartz\Entity\MoveableEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Quartz\Entity\PlayerEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,9 +107,6 @@
     <ClInclude Include="Quartz\Entity\Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Quartz\Entity\PlayerEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Quartz\Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -122,6 +122,12 @@
     <ClInclude Include="Quartz\Animation\Animation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Quartz\Entity\MoveableEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\Entity\PlayerEntity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Configs\MainMenu\Audio.json" />
@@ -130,5 +136,21 @@
     <None Include="Resources\Configs\Playing\Audio.json" />
     <None Include="Resources\Configs\Playing\Textures.json" />
     <None Include="Resources\Configs\Playing\Sprites.json" />
+    <None Include="Resources\Animation\Reaper.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Textures\Background.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Playing.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Textures\Test.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Resources\Fonts\Mikeodial.ttf" />
+    <Font Include="Resources\Fonts\QuiteMagical.ttf" />
   </ItemGroup>
 </Project>

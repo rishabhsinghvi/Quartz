@@ -21,6 +21,8 @@ namespace Quartz
 	extern const std::string AUDIO_DIRECTORY = DIRECTORY + "Quartz/Resources/Audio/";
 	extern const std::string CONFIG_DIRECTORY = DIRECTORY + "Quartz/Resources/Configs/";
 	extern const std::string FONT_DIRECTORY = DIRECTORY + "Quartz/Resources/Fonts/";
+	extern const std::string ENTITY_DIRECTORY = DIRECTORY + "Quartz/Resources/Entities/";
+	extern const std::string ANIMATION_DIRECTORY = DIRECTORY + "Quartz/Resources/Animation/";
 
 	extern const unsigned int WINDOW_WIDTH = sf::VideoMode::getDesktopMode().width;
 	extern const unsigned int WINDOW_HEIGHT = sf::VideoMode::getDesktopMode().height;

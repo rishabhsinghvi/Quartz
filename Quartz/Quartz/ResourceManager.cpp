@@ -226,7 +226,20 @@ namespace Quartz
 		return texture->second.get();
 	}
 
-	const sf::Sprite & ResourceManager::getSprite(const std::string & spriteName) const
+	sf::Sprite ResourceManager::getSprite(const std::string & spriteName) const
+	{
+		auto sprite = m_spriteCache.find(spriteName);
+
+		if (sprite == m_spriteCache.end())
+		{
+			std::cout << "Unable to retrieve sprite: " << spriteName << '\n';
+			__debugbreak();
+		}
+
+		return *(sprite->second);
+	}
+
+	const sf::Sprite& ResourceManager::getSpriteRef(const std::string& spriteName) const
 	{
 		auto sprite = m_spriteCache.find(spriteName);
 

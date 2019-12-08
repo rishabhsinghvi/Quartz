@@ -88,7 +88,7 @@ namespace Quartz
 
 
 
-		m_renderWindow->draw(m_deviceContext->m_resourceManager->getSprite("SPLASH_SP"));
+		m_renderWindow->draw(m_deviceContext->m_resourceManager->getSpriteRef("SPLASH_SP"));
 		for (auto& ui : m_UIEntities)
 		{
 			ui->onHover(mousePos.x, mousePos.y);
