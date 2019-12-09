@@ -1,6 +1,5 @@
 #include "UIText.h"
-
-#include<iostream>
+#include "Logger/Logger.h"
 
 namespace Quartz
 {
@@ -14,7 +13,7 @@ namespace Quartz
 
 		if (!m_Font.loadFromFile(FONT_DIRECTORY + fontName))
 		{
-			std::cout << "Unable to load font: " << fontName << '\n';
+			LOG_ERROR("UIText: Unable to load font: {0}", fontName);
 			__debugbreak();
 		}
 

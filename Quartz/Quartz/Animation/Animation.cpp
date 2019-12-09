@@ -1,4 +1,5 @@
 #include "Animation.h"
+#include "Logger/Logger.h"
 
 namespace Quartz
 {
@@ -31,6 +32,7 @@ namespace Quartz
 
 	void Animation::update(float dt)
 	{
+
 		m_currentTime += dt;
 	
 		float p = 0.0f;
@@ -42,18 +44,25 @@ namespace Quartz
 
 		
 
+
 		if (m_currentTime >= p)
 		{
 			if (m_currentFrameIndex == m_Frames.size() - 1 && m_Looping)
 			{
 				reset();
 			}
-			else
+			else if (m_currentFrameIndex == m_Frames.size() - 1 && !m_Looping)
+			{
+				m_Done = true;
+				return;
+			}
+			else 
 			{
 				m_currentFrameIndex += 1;
 			}
 		}
 
+		m_Done = false;
 		m_Sprite->setTextureRect(m_Frames[m_currentFrameIndex].m_Rect);
 		
 	}
@@ -73,7 +82,17 @@ namespace Quartz
 
 	void Animation::setLooping(bool val)
 	{
-		m_Looping = false;
+		m_Looping = val;
+	}
+
+	bool Animation::isAnimationDone() const
+	{
+		return m_Done;
+	}
+
+	void Animation::setAnimationDone(bool val)
+	{
+		m_Done = val;
 	}
 
 

@@ -1,4 +1,5 @@
 #include "UIButton.h"
+#include "Logger/Logger.h"
 
 #include<iostream>
 
@@ -16,7 +17,7 @@ namespace Quartz
 		
 		if (!m_Font.loadFromFile(FONT_DIRECTORY + fontName))
 		{
-			std::cout << "Unable to load font: " << fontName << '\n';
+			LOG_ERROR("UIButton: Unable to open font: {0}", fontName);
 			__debugbreak();
 		}
 		

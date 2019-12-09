@@ -1,6 +1,7 @@
 #include "StateManager.h"
 #include "States/PlayingState.h"
 #include "States/PausedState.h"
+#include "Logger/Logger.h"
 
 #include<iostream>
 
@@ -25,7 +26,7 @@ namespace Quartz
 
 		if (s == m_GameStates.end())
 		{
-			std::cout << "Invalid state...\n";
+			LOG_ERROR("StateManager: Invalid state {0}", state);
 			__debugbreak();
 		}
 

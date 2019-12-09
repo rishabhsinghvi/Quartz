@@ -1,5 +1,6 @@
 #include "PlayerEntity.h"
 #include "ResourceManager.h"
+#include "Logger/Logger.h"
 
 namespace Quartz
 {
@@ -17,35 +18,41 @@ namespace Quartz
 		// FOR NOW
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
-			if (m_Direction == MoveableEntity::Direction::Right)
+
+			 if (m_Direction == MoveableEntity::Direction::Left || m_State != PlayerEntity::ActionState::Moving)
+			{
+				m_State = PlayerEntity::ActionState::Moving;
+				m_Sprite.setTexture(m_deviceContext->m_resourceManager->getTexture("REAPER_WALKING_RIGHT"));
+				m_Sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
+				setAnimation("WALKING_RIGHT");
+				m_Animation->reset();
+				m_Direction = MoveableEntity::Direction::Right;
+			}
+			else if (m_Direction == MoveableEntity::Direction::Right)
 			{
 				m_Pos += m_Vel * dt;
 				m_Sprite.setPosition(m_Pos.x, m_Pos.y);
 				m_Animation->update(dt);
 			}
-			else if (m_Direction == MoveableEntity::Direction::Left)
-			{
-				m_Sprite.setTexture(m_deviceContext->m_resourceManager->getTexture("REAPER_WALKING_RIGHT"));
-				m_Sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
-				setAnimation("WALKING_RIGHT");
-				m_Direction = MoveableEntity::Direction::Right;
-			}
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		{
-			if (m_Direction == MoveableEntity::Direction::Left)
+			if (m_Direction == MoveableEntity::Direction::Right || m_State != PlayerEntity::ActionState::Moving)
+			{
+				m_State = PlayerEntity::ActionState::Moving;
+				m_Sprite.setTexture(m_deviceContext->m_resourceManager->getTexture("REAPER_WALKING_LEFT"));
+				m_Sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
+				setAnimation("WALKING_LEFT");
+				m_Animation->reset();
+				m_Direction = MoveableEntity::Direction::Left;
+			}
+			else if (m_Direction == MoveableEntity::Direction::Left)
 			{
 				m_Pos -= (m_Vel * dt);
 				m_Sprite.setPosition(m_Pos.x, m_Pos.y);
 				m_Animation->update(dt);
 			}
-			else if (m_Direction == MoveableEntity::Direction::Right)
-			{
-				m_Sprite.setTexture(m_deviceContext->m_resourceManager->getTexture("REAPER_WALKING_LEFT"));
-				m_Sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
-				setAnimation("WALKING_LEFT");
-				m_Direction = MoveableEntity::Direction::Left;
-			}
+			
 		}
 	}
 

@@ -22,6 +22,7 @@ namespace Quartz
 		float m_currentFrameIndex = 0; 
 		sf::Sprite* m_Sprite = nullptr;
 		bool m_Looping = true;
+		bool m_Done = false;
 
 	public:
 
@@ -42,6 +43,10 @@ namespace Quartz
 		void reset();
 
 		void setLooping(bool val);
+
+		bool isAnimationDone() const;
+
+		void setAnimationDone(bool val); 
 
 	};
 

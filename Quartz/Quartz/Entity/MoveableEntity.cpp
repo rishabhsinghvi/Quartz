@@ -1,6 +1,7 @@
 #include "MoveableEntity.h"
 #include "Window.h"
 #include "ResourceManager.h"
+#include "Logger/Logger.h"
 
 #include "SFML/Graphics.hpp"
 
@@ -66,8 +67,7 @@ namespace Quartz
 
 		if (!file)
 		{
-			std::cout << "Unable to open Animation File: " << fileName << '\n';
-			__debugbreak();
+			LOG_ERROR("Unable to open Animation file: {0}", fileName);
 		}
 
 		json root;
@@ -84,7 +84,9 @@ namespace Quartz
 			
 			auto val = it.value();
 
-			for (json& f : val)
+			anim->setLooping(val["LOOP"]);
+			auto array = val["FRAMES"];
+			for (json& f : array)
 			{
 				auto x = f["x"];
 				auto y = f["y"];
@@ -106,8 +108,7 @@ namespace Quartz
 
 		if (find == m_AnimationList.end())
 		{
-			std::cout << "Unable to find animation: " << name << '\n';
-			__debugbreak();
+			LOG_ERROR("Unable to open Animation file: {0}", name);
 		}
 		
 		m_Animation = find->second.get();

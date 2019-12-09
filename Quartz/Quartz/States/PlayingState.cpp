@@ -32,9 +32,6 @@ namespace Quartz
 
 
 
-		m_deviceContext->m_resourceManager->loadTexture("REAPER_WALKING_RIGHT", "C:\\Users\\rdpsi\\Downloads\\Reaper_Walking_SS_100_Right.png");
-		m_deviceContext->m_resourceManager->loadTexture("REAPER_WALKING_LEFT", "C:\\Users\\rdpsi\\Downloads\\Reaper_Walking_SS_100_Left.png");
-		m_deviceContext->m_resourceManager->loadTexture("REAPER_SLASHING_RIGHT", "C:\\Users\\rdpsi\\Downloads\\Reaper_Slashing_SS_100_Right.png");
 		sf::Sprite sprite;
 		sprite.setTexture(m_deviceContext->m_resourceManager->getTexture("REAPER_WALKING_RIGHT"));
 		sprite.setPosition(0.0f, 0.0f);

@@ -1,4 +1,5 @@
 #include "ResourceManager.h"
+#include "Logger/Logger.h"
 
 #include "JSON/json.hpp"
 
@@ -24,8 +25,7 @@ namespace Quartz
 
 		if (!config)
 		{
-			std::cout << "Unable to open config file: " << filePath << '\n';
-			__debugbreak();
+			LOG_ERROR("Unable to open config file: {0}", filePath);
 		}
 
 		json root;
@@ -45,7 +45,7 @@ namespace Quartz
 
 		if (!config)
 		{
-			std::cout << "Unable to open config file: " << filePath << '\n';
+			LOG_ERROR("Unable to open config file: {0}", filePath);
 			__debugbreak();
 		}
 
@@ -76,7 +76,7 @@ namespace Quartz
 			
 			loadSprite(spriteName, std::move(sprite));
 			
-			std::cout << "Loaded Sprite: " << spriteName << '\n';
+			LOG_INFO("Loaded Sprite: {0}", spriteName);
 		}
 	}
 
@@ -88,7 +88,7 @@ namespace Quartz
 
 		if (!config)
 		{
-			std::cout << "Unable to open config file: " << filePath << '\n';
+			LOG_ERROR("Unable to open config file: {0}", filePath);
 			__debugbreak();
 		}
 
@@ -107,13 +107,13 @@ namespace Quartz
 			{
 				m_musicDirectory[name] = std::move(audioFile);
 
-				std::cout << "Loaded Audio: " << name << '\n';
+				LOG_INFO("ResourceManager: Loaded Audio: {0}", name);
 				return;
 			}
 
 			loadSound(name, audioFile);
 
-			std::cout << "Loaded Audio: " << name << '\n'; 
+			LOG_INFO("ResourceManager: Loaded Audio: {0}", name);
 		}
 	}
 
@@ -123,7 +123,7 @@ namespace Quartz
 
 		if (inCache != m_textureCache.end())
 		{
-			std::cout << "Texture: " << textureName << " already exists in texture cache. Replacing this texture...";
+			LOG_WARN("ResourceManager: Texture {0} already exists in texture cache. Replacing this texture...", textureName);
 		}
 
 		auto texture = std::make_unique<sf::Texture>();
@@ -134,7 +134,7 @@ namespace Quartz
 		}
 
 		m_textureCache[textureName] = std::move(texture);
-		std::cout << "Loaded Texture: " << textureName << '\n';
+		LOG_INFO("ResourceManager: Texture loaded: {0}", textureName);
 	}
 
 	void ResourceManager::loadTexture(const std::string & textureName, std::unique_ptr<sf::Texture> texture)
@@ -143,10 +143,11 @@ namespace Quartz
 
 		if (inCache != m_textureCache.end())
 		{
-			std::cout << "Texture: " << textureName << " already exists in texture cache. Replacing this texture...\n";
+			LOG_WARN("ResourceManager: Texture {0} already exists in texture cache. Replacing this texture...", textureName);
 		}
 
 		m_textureCache[textureName] = std::move(texture);
+		LOG_INFO("ResourceManager: Texture loaded: {0}", textureName);
 	}
 
 	void ResourceManager::loadSprite(const std::string & spriteName, std::unique_ptr<sf::Sprite> sprite)
@@ -155,10 +156,11 @@ namespace Quartz
 
 		if (inCache != m_spriteCache.end())
 		{
-			std::cout << "Sprite : " << spriteName << " already exists in sprite cache. Replacing this sprite..\n";
+			LOG_WARN("ResourceManager: Sprite {0} already exists in sprite cache. Replacing this sprite...", spriteName);
 		}
 
 		m_spriteCache[spriteName] = std::move(sprite);
+		LOG_INFO("ResourceManager: Loaded Sprite: {0}", spriteName);
 
 	}
 
@@ -168,7 +170,7 @@ namespace Quartz
 
 		if (inCache != m_soundCache.end())
 		{
-			std::cout << "Sound : " << soundName << " already exists in sprite cache. Replacing this sound..\n";
+			LOG_WARN("ResourceManager: Sound {0} already exists in sound cache. Replacing this sound...", soundName);
 		}
 
 		auto soundBuffer = std::make_unique<sf::SoundBuffer>();
@@ -193,7 +195,7 @@ namespace Quartz
 
 		if (inCache != m_soundCache.end())
 		{
-			std::cout << "Sound : " << soundName << " already exists in sprite cache. Replacing this sound..\n";
+			LOG_WARN("ResourceManager: Sound {0} already exists in sound cache. Replacing this sound...", soundName);
 		}
 
 		m_soundCache[soundName] = std::move(sound);
@@ -206,7 +208,7 @@ namespace Quartz
 		
 		if (texture == m_textureCache.end())
 		{
-			std::cout << "Unable to retrieve texture: " << textureName << '\n';
+			LOG_ERROR("ResourceManager: Unable to retrieve texture: {0}", textureName);
 			__debugbreak();
 		}
 
@@ -219,7 +221,7 @@ namespace Quartz
 
 		if (texture == m_textureCache.end())
 		{
-			std::cout << "Unable to retrieve texture: " << textureName << '\n';
+			LOG_ERROR("ResourceManager: Unable to retrieve texture: {0}", textureName);
 			__debugbreak();
 		}
 
@@ -232,7 +234,7 @@ namespace Quartz
 
 		if (sprite == m_spriteCache.end())
 		{
-			std::cout << "Unable to retrieve sprite: " << spriteName << '\n';
+			LOG_ERROR("ResourceManager: Unable to retrieve sprite: {0}", spriteName);
 			__debugbreak();
 		}
 
@@ -245,7 +247,7 @@ namespace Quartz
 
 		if (sprite == m_spriteCache.end())
 		{
-			std::cout << "Unable to retrieve sprite: " << spriteName << '\n';
+			LOG_ERROR("ResourceManager: Unable to retrieve sprite: {0}", spriteName);
 			__debugbreak();
 		}
 
@@ -258,7 +260,7 @@ namespace Quartz
 
 		if (sound == m_soundCache.end())
 		{
-			std::cout << "Unable to retrieve sound: " << soundName << '\n';
+			LOG_ERROR("ResourceManager: Unable to retrieve sound: {0}", soundName);
 		}
 
 		return *(sound->second);
@@ -270,13 +272,13 @@ namespace Quartz
 
 		if (sound == m_musicDirectory.end())
 		{
-			std::cout << "Unable to retrieve file: " << soundName << '\n';
+			LOG_ERROR("ResourceManager: Unable to retrieve file: {0}", soundName);
 			return;
 		}
 
 		if (!m_currentMusic.openFromFile(sound->second))
 		{
-			std::cout << "Unable to open music file: " << sound->second << '\n';
+			LOG_ERROR("ResourceManager: Unable to retrieve sound: {0}", sound->second);
 		}
 
 		m_currentMusic.setLoop(true);

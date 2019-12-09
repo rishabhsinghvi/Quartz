@@ -9,6 +9,15 @@ namespace Quartz
 	class PlayerEntity : public MoveableEntity
 	{
 	public:
+		enum class ActionState
+		{
+			None,
+			Moving, Running, Slashing, Jumping, Falling, 
+		};
+	protected:
+		// Variables to keep track of action
+		ActionState m_State = ActionState::None;
+	public:
 		PlayerEntity(DeviceContext* dc);
 
 		virtual void setSprite(const sf::Sprite& sprite) override;
