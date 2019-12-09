@@ -1,8 +1,8 @@
 #include "MainMenuState.h"
 #include "ResourceManager.h"
 #include "Window.h"
-#include "UIButton.h"
-#include "UIText.h"
+#include "UI/UIButton.h"
+#include "UI/UIText.h"
 #include "Application.h"
 #include "Events/ApplicationEvents.h"
 

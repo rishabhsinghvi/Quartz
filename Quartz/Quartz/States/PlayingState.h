@@ -2,7 +2,7 @@
 #define QUARTZ_PLAYING_STATE_H
 
 #include "GameState.h"
-#include "UIElement.h"
+#include "UI/UIElement.h"
 #include "Entity/Entity.h"
 #include "Animation/Animation.h"
 

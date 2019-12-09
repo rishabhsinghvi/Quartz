@@ -3,7 +3,7 @@
 
 
 #include "GameState.h"
-#include "UIElement.h"
+#include "UI/UIElement.h"
 
 
 namespace Quartz

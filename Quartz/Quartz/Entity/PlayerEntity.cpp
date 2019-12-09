@@ -16,7 +16,47 @@ namespace Quartz
 	void PlayerEntity::update(float dt)
 	{
 		// FOR NOW
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+		{
+			if (m_Direction == MoveableEntity::Direction::Left || m_State != PlayerEntity::ActionState::Running)
+			{
+				m_State = PlayerEntity::ActionState::Running;
+				m_Direction = MoveableEntity::Direction::Right;
+
+				m_Sprite.setTexture(m_deviceContext->m_resourceManager->getTexture("REAPER_RUNNING_RIGHT"));
+				m_Sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
+				setAnimation("RUNNING_RIGHT");
+				m_Animation->reset();
+			}
+			else
+			{
+				m_Pos += (m_Vel * 2) * dt;
+				m_Sprite.setPosition(m_Pos.x, m_Pos.y);
+				m_Animation->update(dt);
+			}
+		}
+
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+		{
+			if (m_Direction == MoveableEntity::Direction::Right || m_State != PlayerEntity::ActionState::Running)
+			{
+				m_State = PlayerEntity::ActionState::Running;
+				m_Direction = MoveableEntity::Direction::Left;
+
+				m_Sprite.setTexture(m_deviceContext->m_resourceManager->getTexture("REAPER_RUNNING_LEFT"));
+				m_Sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
+				setAnimation("RUNNING_LEFT");
+				m_Animation->reset();
+			}
+			else
+			{
+				m_Pos -= (m_Vel * 2) * dt;
+				m_Sprite.setPosition(m_Pos.x, m_Pos.y);
+				m_Animation->update(dt);
+			}
+		}
+
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
 
 			 if (m_Direction == MoveableEntity::Direction::Left || m_State != PlayerEntity::ActionState::Moving)

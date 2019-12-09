@@ -27,12 +27,6 @@
     <ClCompile Include="Quartz\ResourceManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Quartz\UIButton.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Quartz\UIText.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Quartz\StateManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -63,6 +57,12 @@
     <ClCompile Include="Quartz\Entity\PlayerEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Quartz\UI\UIText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Quartz\UI\UIButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Quartz\Application.h">
@@ -77,16 +77,7 @@
     <ClInclude Include="Quartz\Tile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Quartz\UIElement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Quartz\DeviceContext.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Quartz\UIButton.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Quartz\UIText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Quartz\StateManager.h">
@@ -354,6 +345,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Quartz\Logger\Logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\UI\UIText.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\UI\UIElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\UI\UIButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

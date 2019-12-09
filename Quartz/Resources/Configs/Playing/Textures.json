@@ -2,5 +2,7 @@
   "PLAYING_BG": "../Quartz/Resources/Textures/Playing.png",
   "REAPER_WALKING_RIGHT": "../Quartz/Resources/Textures/Reaper_Walking_SS_100_Right.png",
   "REAPER_WALKING_LEFT": "../Quartz/Resources/Textures/Reaper_Walking_SS_100_Left.png",
-  "REAPER_SLASHING_RIGHT":  "../Quartz/Resources/Textures/Reaper_Slashing_SS_100_Right.png"
+  "REAPER_SLASHING_RIGHT": "../Quartz/Resources/Textures/Reaper_Slashing_SS_100_Right.png",
+  "REAPER_RUNNING_RIGHT": "../Quartz/Resources/Textures/Reaper_Running_SS_100_Right.png",
+  "REAPER_RUNNING_LEFT": "../Quartz/Resources/Textures/Reaper_Running_SS_100_Left.png"
 }

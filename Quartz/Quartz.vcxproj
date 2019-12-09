@@ -149,8 +149,8 @@
     <ClCompile Include="Quartz\States\PausedState.cpp" />
     <ClCompile Include="Quartz\States\PlayingState.cpp" />
     <ClCompile Include="Quartz\Timer.cpp" />
-    <ClCompile Include="Quartz\UIButton.cpp" />
-    <ClCompile Include="Quartz\UIText.cpp" />
+    <ClCompile Include="Quartz\UI\UIButton.cpp" />
+    <ClCompile Include="Quartz\UI\UIText.cpp" />
     <ClCompile Include="Quartz\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -247,9 +247,9 @@
     <ClInclude Include="Quartz\States\PlayingState.h" />
     <ClInclude Include="Quartz\Tile.h" />
     <ClInclude Include="Quartz\Timer.h" />
-    <ClInclude Include="Quartz\UIButton.h" />
-    <ClInclude Include="Quartz\UIElement.h" />
-    <ClInclude Include="Quartz\UIText.h" />
+    <ClInclude Include="Quartz\UI\UIButton.h" />
+    <ClInclude Include="Quartz\UI\UIElement.h" />
+    <ClInclude Include="Quartz\UI\UIText.h" />
     <ClInclude Include="Quartz\Window.h" />
   </ItemGroup>
   <ItemGroup>

@@ -496,5 +496,208 @@
         "duration": 0.05
       }
     ]
+  },
+  "RUNNING_RIGHT": {
+    "LOOP": true,
+    "FRAMES": [
+      {
+        "name": "0_Reaper_Man_Running_000",
+        "x": 0,
+        "y": 0,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_001",
+        "x": 0,
+        "y": 101,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_002",
+        "x": 101,
+        "y": 0,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_003",
+        "x": 101,
+        "y": 101,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_004",
+        "x": 0,
+        "y": 202,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_005",
+        "x": 101,
+        "y": 202,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_006",
+        "x": 202,
+        "y": 0,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_007",
+        "x": 202,
+        "y": 101,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_008",
+        "x": 202,
+        "y": 202,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_009",
+        "x": 0,
+        "y": 303,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_010",
+        "x": 101,
+        "y": 303,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_011",
+        "x": 202,
+        "y": 303,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      }
+    ]
+  },
+
+  "RUNNING_LEFT": {
+    "LOOP": true,
+    "FRAMES": [
+      {
+        "name": "0_Reaper_Man_Running_000",
+        "x": 0,
+        "y": 0,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_001",
+        "x": 0,
+        "y": 101,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_002",
+        "x": 101,
+        "y": 0,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_003",
+        "x": 101,
+        "y": 101,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_004",
+        "x": 0,
+        "y": 202,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_005",
+        "x": 101,
+        "y": 202,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_006",
+        "x": 202,
+        "y": 0,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_007",
+        "x": 202,
+        "y": 101,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_008",
+        "x": 202,
+        "y": 202,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_009",
+        "x": 0,
+        "y": 303,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_010",
+        "x": 101,
+        "y": 303,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      },
+      {
+        "name": "0_Reaper_Man_Running_011",
+        "x": 202,
+        "y": 303,
+        "width": 100,
+        "height": 100,
+        "duration": 0.05
+      }
+    ]
   }
-  }
+}
