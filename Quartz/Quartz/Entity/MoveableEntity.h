@@ -30,6 +30,7 @@ namespace Quartz
 		unsigned int m_SpriteHeight;
 		std::unordered_map<std::string, std::unique_ptr<Animation>> m_AnimationList;
 		Direction m_Direction = Direction::Right;
+		Entity::EntityType m_entityType = Entity::EntityType::Moveable;
 
 	public:
 
@@ -59,6 +60,8 @@ namespace Quartz
 		virtual void setAnimation(const std::string& name);
 
 		virtual void setSpriteDimensions(unsigned int w, unsigned int h);
+
+		Entity::EntityType getEntityType() const;
 
 	};
 }

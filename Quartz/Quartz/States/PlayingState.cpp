@@ -6,6 +6,7 @@
 #include "Events/AppEventQueue.h"
 #include "Entity/MoveableEntity.h"
 #include "Entity/PlayerEntity.h"
+#include "Logger/Logger.h"
 
 #ifdef QUARTZ_DEBUG
 #include<iostream>
@@ -13,6 +14,10 @@
 
 namespace Quartz
 {
+	extern const unsigned int WINDOW_WIDTH;
+	extern const unsigned int WINDOW_HEIGHT;
+
+
 	void PlayingState::init(DeviceContext* dc)
 	{
 		if (m_Initialized)
@@ -47,7 +52,6 @@ namespace Quartz
 		m_Entities.push_back(std::move(entity));
 
 		m_deviceContext->m_resourceManager->playMusic("PLAYING_AUDIO");
-
 		m_Initialized = true;
 	}
 

@@ -10,7 +10,11 @@ namespace Quartz
 {
 	class Entity
 	{
-	private:
+	public:
+		enum class EntityType
+		{
+			Default, Moveable 
+		};
 	
 	public:
 

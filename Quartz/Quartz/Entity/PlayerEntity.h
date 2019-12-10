@@ -9,14 +9,15 @@ namespace Quartz
 	class PlayerEntity : public MoveableEntity
 	{
 	public:
-		enum class ActionState
+		enum ActionState
 		{
-			None,
-			Moving, Running, Slashing, Jumping, Falling, 
+			Idle,
+			Moving, Running, Slashing, Jumping, Falling,
+			RunningSlashing, MovingSlashing
 		};
 	protected:
 		// Variables to keep track of action
-		ActionState m_State = ActionState::None;
+		ActionState m_State = ActionState::Idle;
 	public:
 		PlayerEntity(DeviceContext* dc);
 

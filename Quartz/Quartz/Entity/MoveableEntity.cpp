@@ -120,6 +120,11 @@ namespace Quartz
 		m_SpriteHeight = h;
 	}
 
+	Entity::EntityType MoveableEntity::getEntityType() const
+	{
+		return m_entityType;
+	}
+
 	void MoveableEntity::setDirection(MoveableEntity::Direction dir)
 	{
 		m_Direction = dir;

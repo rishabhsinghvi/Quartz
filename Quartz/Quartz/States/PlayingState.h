@@ -16,7 +16,7 @@ namespace Quartz
 		bool m_Initialized = false;
 		std::vector<std::unique_ptr<UIElement>> m_UIEntities;
 		std::vector<std::unique_ptr<Entity>> m_Entities;
-
+		sf::View m_View;
 		//
 
 
