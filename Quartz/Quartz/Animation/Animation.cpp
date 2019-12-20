@@ -32,6 +32,8 @@ namespace Quartz
 
 	void Animation::update(float dt)
 	{
+		if (m_Done)
+			return;
 
 		m_currentTime += dt;
 	
@@ -62,7 +64,6 @@ namespace Quartz
 			}
 		}
 
-		m_Done = false;
 		m_Sprite->setTextureRect(m_Frames[m_currentFrameIndex].m_Rect);
 		
 	}
@@ -78,6 +79,7 @@ namespace Quartz
 	{
 		m_currentFrameIndex = 0;
 		m_currentTime = 0.0f;
+		m_Done = false;
 	}
 
 	void Animation::setLooping(bool val)

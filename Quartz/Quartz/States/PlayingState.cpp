@@ -38,12 +38,13 @@ namespace Quartz
 
 
 		sf::Sprite sprite;
-		sprite.setTexture(m_deviceContext->m_resourceManager->getTexture("REAPER_WALKING_RIGHT"));
+		sprite.setTexture(m_deviceContext->m_resourceManager->getTexture("REAPER_IDLE_RIGHT"));
 		sprite.setPosition(0.0f, 0.0f);
 		sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
 
 		auto entity = std::make_unique<PlayerEntity>(m_deviceContext);
 		entity->setSprite(sprite);
+		entity->setPosition(Vec2(0.0f, 920.0f));
 		entity->setVelocity(Vec2(100.0f, 0.0f));
 
 		entity->createAnimationList("Reaper.json");
@@ -52,6 +53,13 @@ namespace Quartz
 		m_Entities.push_back(std::move(entity));
 
 		m_deviceContext->m_resourceManager->playMusic("PLAYING_AUDIO");
+
+		m_tileMap = TileMap("TEST_SS", 100, 100, 20, 11, m_deviceContext);
+
+		m_tileMap.createTileMap("Test.json");
+
+
+
 		m_Initialized = true;
 	}
 
@@ -73,6 +81,8 @@ namespace Quartz
 	void PlayingState::render()
 	{
 		m_renderWindow->draw(m_deviceContext->m_resourceManager->getSprite("PLAYING_SP"));
+
+		m_tileMap.render();
 
 		for (auto& x : m_Entities)
 			x->render();

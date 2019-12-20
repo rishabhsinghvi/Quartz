@@ -23,6 +23,7 @@ namespace Quartz
 	extern const std::string FONT_DIRECTORY = DIRECTORY + "Quartz/Resources/Fonts/";
 	extern const std::string ENTITY_DIRECTORY = DIRECTORY + "Quartz/Resources/Entities/";
 	extern const std::string ANIMATION_DIRECTORY = DIRECTORY + "Quartz/Resources/Animation/";
+	extern const std::string TILEMAP_DIRECTORY = DIRECTORY + "Quartz/Resources/TileMap/";
 
 	extern const unsigned int WINDOW_WIDTH = sf::VideoMode::getDesktopMode().width;
 	extern const unsigned int WINDOW_HEIGHT = sf::VideoMode::getDesktopMode().height;
@@ -35,6 +36,7 @@ namespace Quartz
 		m_Window = std::make_unique<Window>();
 		m_resourceManager = std::make_unique<ResourceManager>();
 		m_appEventQueue = std::make_unique<AppEventQueue>();
+		m_Physics = std::make_unique<PhysicsEngine>();
 
 		m_Window->init();
 		m_resourceManager->init();

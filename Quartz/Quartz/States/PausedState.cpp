@@ -73,7 +73,7 @@ namespace Quartz
 
 	void PausedState::update(float dt)
 	{
-		// NOTHING 
+
 	}
 
 	void PausedState::handleInput(sf::Event& event)
@@ -95,6 +95,18 @@ namespace Quartz
 				}
 			}
 			break;
+		}
+
+		case sf::Event::KeyReleased:
+		{
+			if (event.key.code == sf::Keyboard::Escape)
+			{
+				AppEvent event;
+				event.eventType = EventType::StateChangeEvent;
+				event.m_Info.emplace<StateChangeEvent>("Playing");
+
+				m_deviceContext->m_appEventQueue->addEventToQueue(event);
+			}
 		}
 
 		case sf::Event::LostFocus:

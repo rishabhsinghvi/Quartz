@@ -5,6 +5,7 @@
 #include "UI/UIElement.h"
 #include "Entity/Entity.h"
 #include "Animation/Animation.h"
+#include "TileMap/TileMap.h"
 
 namespace Quartz
 {
@@ -19,6 +20,8 @@ namespace Quartz
 		sf::View m_View;
 		//
 
+		TileMap m_tileMap;
+		
 
 	public:
 

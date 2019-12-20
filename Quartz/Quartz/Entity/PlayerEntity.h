@@ -44,6 +44,10 @@ namespace Quartz
 		virtual void setAnimation(const std::string& name);
 
 		virtual void setSpriteDimensions(unsigned int w, unsigned int h);
+
+	private:
+
+		virtual void setToAnimation(const std::string& textureName, const std::string& animationName);
 	};
 }
 

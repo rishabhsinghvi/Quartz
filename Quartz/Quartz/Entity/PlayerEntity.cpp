@@ -2,6 +2,12 @@
 #include "ResourceManager.h"
 #include "Logger/Logger.h"
 
+#define KEY_PRESSED(x) sf::Keyboard::isKeyPressed(sf::Keyboard::##x)
+#define MOUSE_PRESSED(x) sf::Mouse::isButtonPressed(sf::Mouse::##x)
+
+constexpr float RUNNING_SPEEDUP = 2.0f;
+
+
 namespace Quartz
 {
 	PlayerEntity::PlayerEntity(DeviceContext* dc): MoveableEntity(dc)
@@ -15,22 +21,42 @@ namespace Quartz
 
 	void PlayerEntity::update(float dt)
 	{
-		// FOR NOW
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+		// Run
+		if (KEY_PRESSED(D) && KEY_PRESSED(LShift) && MOUSE_PRESSED(Left))
+		{
+			if (m_State != PlayerEntity::ActionState::RunningSlashing)
+			{
+				m_State = PlayerEntity::ActionState::RunningSlashing;
+
+				setToAnimation("REAPER_RUNNING_SLASHING_RIGHT", "RUNNING_SLASHING_RIGHT");
+			}
+			else
+			{
+				if (m_Animation->isAnimationDone())
+				{
+					m_State = PlayerEntity::ActionState::Running;
+					setToAnimation("REAPER_RUNNING_RIGHT", "RUNNING_RIGHT");
+				}
+				else
+				{
+					m_Pos += (m_Vel * RUNNING_SPEEDUP) * dt;
+					m_Sprite.setPosition(m_Pos.x, m_Pos.y);
+					m_Animation->update(dt);
+				}
+			}
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
 		{
 			if (m_Direction == MoveableEntity::Direction::Left || m_State != PlayerEntity::ActionState::Running)
 			{
 				m_State = PlayerEntity::ActionState::Running;
 				m_Direction = MoveableEntity::Direction::Right;
 
-				m_Sprite.setTexture(m_deviceContext->m_resourceManager->getTexture("REAPER_RUNNING_RIGHT"));
-				m_Sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
-				setAnimation("RUNNING_RIGHT");
-				m_Animation->reset();
+				setToAnimation("REAPER_RUNNING_RIGHT", "RUNNING_RIGHT");
 			}
 			else
 			{
-				m_Pos += (m_Vel * 2) * dt;
+				m_Pos += (m_Vel * RUNNING_SPEEDUP) * dt;
 				m_Sprite.setPosition(m_Pos.x, m_Pos.y);
 				m_Animation->update(dt);
 			}
@@ -43,30 +69,26 @@ namespace Quartz
 				m_State = PlayerEntity::ActionState::Running;
 				m_Direction = MoveableEntity::Direction::Left;
 
-				m_Sprite.setTexture(m_deviceContext->m_resourceManager->getTexture("REAPER_RUNNING_LEFT"));
-				m_Sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
-				setAnimation("RUNNING_LEFT");
-				m_Animation->reset();
+				setToAnimation("REAPER_RUNNING_LEFT", "RUNNING_LEFT");
 			}
 			else
 			{
-				m_Pos -= (m_Vel * 2) * dt;
+				m_Pos -= (m_Vel * RUNNING_SPEEDUP) * dt;
 				m_Sprite.setPosition(m_Pos.x, m_Pos.y);
 				m_Animation->update(dt);
 			}
 		}
 
+		// Walk
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
 
 			 if (m_Direction == MoveableEntity::Direction::Left || m_State != PlayerEntity::ActionState::Moving)
 			{
 				m_State = PlayerEntity::ActionState::Moving;
-				m_Sprite.setTexture(m_deviceContext->m_resourceManager->getTexture("REAPER_WALKING_RIGHT"));
-				m_Sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
-				setAnimation("WALKING_RIGHT");
-				m_Animation->reset();
 				m_Direction = MoveableEntity::Direction::Right;
+
+				setToAnimation("REAPER_WALKING_RIGHT", "WALKING_RIGHT");
 			}
 			else if (m_Direction == MoveableEntity::Direction::Right)
 			{
@@ -80,11 +102,9 @@ namespace Quartz
 			if (m_Direction == MoveableEntity::Direction::Right || m_State != PlayerEntity::ActionState::Moving)
 			{
 				m_State = PlayerEntity::ActionState::Moving;
-				m_Sprite.setTexture(m_deviceContext->m_resourceManager->getTexture("REAPER_WALKING_LEFT"));
-				m_Sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
-				setAnimation("WALKING_LEFT");
-				m_Animation->reset();
 				m_Direction = MoveableEntity::Direction::Left;
+
+				setToAnimation("REAPER_WALKING_LEFT", "WALKING_LEFT");
 			}
 			else if (m_Direction == MoveableEntity::Direction::Left)
 			{
@@ -93,6 +113,57 @@ namespace Quartz
 				m_Animation->update(dt);
 			}
 			
+		}
+
+		else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_State != PlayerEntity::ActionState::Slashing && m_Direction == MoveableEntity::Direction::Right)
+		{
+			m_State = PlayerEntity::ActionState::Slashing;
+
+			setToAnimation("REAPER_SLASHING_RIGHT", "SLASHING_RIGHT");
+		}
+
+		else if (m_State == PlayerEntity::ActionState::Slashing)
+		{
+			if (m_Animation->isAnimationDone())
+			{
+				m_State = PlayerEntity::ActionState::Idle;
+
+				setToAnimation("REAPER_IDLE_RIGHT", "IDLE_RIGHT");
+			}
+			else
+			{
+				m_Animation->update(dt);
+			}
+		}
+
+
+		//
+		else if (m_Direction == MoveableEntity::Direction::Right)
+		{
+			if (m_State != PlayerEntity::ActionState::Idle)
+			{
+				m_State = PlayerEntity::ActionState::Idle;
+				
+				setToAnimation("REAPER_IDLE_RIGHT", "IDLE_RIGHT");
+			}
+			else
+			{
+				m_Animation->update(dt);
+			}
+		
+		}
+		else if (m_Direction == MoveableEntity::Direction::Left)
+		{
+			if (m_State != PlayerEntity::ActionState::Idle)
+			{
+				m_State = PlayerEntity::ActionState::Idle;
+				
+				setToAnimation("REAPER_IDLE_LEFT", "IDLE_LEFT");
+			}
+			else
+			{
+				m_Animation->update(dt);
+			}
 		}
 	}
 
@@ -144,6 +215,14 @@ namespace Quartz
 	void PlayerEntity::setSpriteDimensions(unsigned int w, unsigned int h)
 	{
 		MoveableEntity::setSpriteDimensions(w, h);
+	}
+
+	void PlayerEntity::setToAnimation(const std::string& textureName, const std::string& animationName)
+	{
+		m_Sprite.setTexture(m_deviceContext->m_resourceManager->getTexture(textureName));
+		m_Sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
+		setAnimation(animationName);
+		m_Animation->reset();
 	}
 
 

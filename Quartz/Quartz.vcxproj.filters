@@ -63,6 +63,12 @@
     <ClCompile Include="Quartz\UI\UIButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Quartz\TileMap\TileMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Quartz\Physics\PhysicsEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Quartz\Application.h">
@@ -72,9 +78,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Quartz\ResourceManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Quartz\Tile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Quartz\DeviceContext.h">
@@ -354,6 +357,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Quartz\UI\UIButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\TileMap\Tile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\TileMap\TileMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\Physics\PhysicsEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quartz\Physics\Constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

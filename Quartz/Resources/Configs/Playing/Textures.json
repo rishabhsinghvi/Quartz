@@ -4,5 +4,9 @@
   "REAPER_WALKING_LEFT": "../Quartz/Resources/Textures/Reaper_Walking_SS_100_Left.png",
   "REAPER_SLASHING_RIGHT": "../Quartz/Resources/Textures/Reaper_Slashing_SS_100_Right.png",
   "REAPER_RUNNING_RIGHT": "../Quartz/Resources/Textures/Reaper_Running_SS_100_Right.png",
-  "REAPER_RUNNING_LEFT": "../Quartz/Resources/Textures/Reaper_Running_SS_100_Left.png"
+  "REAPER_RUNNING_LEFT": "../Quartz/Resources/Textures/Reaper_Running_SS_100_Left.png",
+  "REAPER_IDLE_RIGHT": "../Quartz/Resources/Textures/Reaper_Idle_Blinking_SS_100_Right.png",
+  "REAPER_IDLE_LEFT": "../Quartz/Resources/Textures/Reaper_Idle_Blinking_SS_100_Left.png",
+  "REAPER_RUNNING_SLASHING_RIGHT": "../Quartz/Resources/Textures/Reaper_Running_Slashing_SS_100_Right.png",
+  "TEST_SS": "../Quartz/Resources/Textures/SS_Test.png"
 }

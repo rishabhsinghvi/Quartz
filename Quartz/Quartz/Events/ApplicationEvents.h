@@ -12,7 +12,9 @@ namespace Quartz
 	{
 		None,
 		StateChangeEvent,
-		AppCloseEvent
+		AppCloseEvent,
+		PhysicsStartEvent,
+		PhysicsStopEvent
 	};
 
 	struct AppEvent;
@@ -44,6 +46,7 @@ namespace Quartz
 	{
 		// NOTHING
 	};
+
 
 	struct AppEvent
 	{
