@@ -1007,7 +1007,7 @@
         "y": 0,
         "width": 100,
         "height": 100,
-        "duration":  0.02
+        "duration":  0.05
       },
       {
         "name": "0_Reaper_Man_Run Slashing_001",
@@ -1015,7 +1015,7 @@
         "y": 101,
         "width": 100,
         "height": 100,
-        "duration": 0.02
+        "duration": 0.05
       },
       {
         "name": "0_Reaper_Man_Run Slashing_002",
@@ -1023,7 +1023,7 @@
         "y": 0,
         "width": 100,
         "height": 100,
-        "duration": 0.02
+        "duration": 0.05
       },
       {
         "name": "0_Reaper_Man_Run Slashing_003",
@@ -1031,7 +1031,7 @@
         "y": 101,
         "width": 100,
         "height": 100,
-        "duration": 0.02
+        "duration": 0.05
       },
       {
         "name": "0_Reaper_Man_Run Slashing_004",
@@ -1039,7 +1039,7 @@
         "y": 202,
         "width": 100,
         "height": 100,
-        "duration": 0.02
+        "duration": 0.05
       },
       {
         "name": "0_Reaper_Man_Run Slashing_005",
@@ -1047,7 +1047,7 @@
         "y": 202,
         "width": 100,
         "height": 100,
-        "duration": 0.02
+        "duration": 0.05
       },
       {
         "name": "0_Reaper_Man_Run Slashing_006",
@@ -1055,7 +1055,7 @@
         "y": 0,
         "width": 100,
         "height": 100,
-        "duration": 0.02
+        "duration": 0.05
       },
       {
         "name": "0_Reaper_Man_Run Slashing_007",
@@ -1063,7 +1063,7 @@
         "y": 101,
         "width": 100,
         "height": 100,
-        "duration": 0.02
+        "duration": 0.05
       },
       {
         "name": "0_Reaper_Man_Run Slashing_008",
@@ -1071,7 +1071,7 @@
         "y": 202,
         "width": 100,
         "height": 100,
-        "duration": 0.02
+        "duration": 0.05
       },
       {
         "name": "0_Reaper_Man_Run Slashing_009",
@@ -1079,7 +1079,7 @@
         "y": 303,
         "width": 100,
         "height": 100,
-        "duration": 0.02
+        "duration": 0.05
       },
       {
         "name": "0_Reaper_Man_Run Slashing_010",
@@ -1087,7 +1087,7 @@
         "y": 303,
         "width": 100,
         "height": 100,
-        "duration": 0.02
+        "duration": 0.05
       },
       {
         "name": "0_Reaper_Man_Run Slashing_011",
@@ -1095,7 +1095,7 @@
         "y": 303,
         "width": 100,
         "height": 100,
-        "duration":  0.02
+        "duration":  0.05
       }
     ]
   }

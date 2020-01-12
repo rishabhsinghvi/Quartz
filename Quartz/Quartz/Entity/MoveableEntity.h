@@ -15,7 +15,7 @@ namespace Quartz
 	class MoveableEntity : public Entity
 	{
 	public:
-		enum class Direction
+		enum Direction
 		{
 			Left, Right
 		};
@@ -29,7 +29,7 @@ namespace Quartz
 		unsigned int m_SpriteWidth;
 		unsigned int m_SpriteHeight;
 		std::unordered_map<std::string, std::unique_ptr<Animation>> m_AnimationList;
-		Direction m_Direction = Direction::Right;
+		Direction m_Direction = Right;
 		Entity::EntityType m_entityType = Entity::EntityType::Moveable;
 
 	public:

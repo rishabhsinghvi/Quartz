@@ -164,6 +164,8 @@
     <ClInclude Include="Quartz\Entity\PlayerEntity.h" />
     <ClInclude Include="Quartz\Events\AppEventQueue.h" />
     <ClInclude Include="Quartz\Events\ApplicationEvents.h" />
+    <ClInclude Include="Quartz\InputHandler.h" />
+    <ClInclude Include="Quartz\Keycodes.h" />
     <ClInclude Include="Quartz\Logger\Logger.h" />
     <ClInclude Include="Quartz\Logger\spdlog\async.h" />
     <ClInclude Include="Quartz\Logger\spdlog\async_logger-inl.h" />
@@ -249,7 +251,6 @@
     <ClInclude Include="Quartz\StateManager.h" />
     <ClInclude Include="Quartz\States\PausedState.h" />
     <ClInclude Include="Quartz\States\PlayingState.h" />
-    <ClInclude Include="Quartz\TileMap\Tile.h" />
     <ClInclude Include="Quartz\TileMap\TileMap.h" />
     <ClInclude Include="Quartz\Timer.h" />
     <ClInclude Include="Quartz\UI\UIButton.h" />

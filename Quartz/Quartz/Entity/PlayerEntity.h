@@ -3,6 +3,10 @@
 
 #include "MoveableEntity.h"
 #include "DeviceContext.h"
+#include "Keycodes.h"
+
+#include<vector>
+#include<functional>
 
 namespace Quartz
 {
@@ -17,7 +21,8 @@ namespace Quartz
 		};
 	protected:
 		// Variables to keep track of action
-		ActionState m_State = ActionState::Idle;
+		ActionState m_State = Idle;
+
 	public:
 		PlayerEntity(DeviceContext* dc);
 
@@ -45,10 +50,22 @@ namespace Quartz
 
 		virtual void setSpriteDimensions(unsigned int w, unsigned int h);
 
+		float getPositionX() const;
+
+		float getPositionY() const;
+
 	private:
 
 		virtual void setToAnimation(const std::string& textureName, const std::string& animationName);
+
+		void buildMovementMatrix();
 	};
+
+	namespace Input
+	{
+		static Keycode getUserInput();
+	}
+
 }
 
 #endif

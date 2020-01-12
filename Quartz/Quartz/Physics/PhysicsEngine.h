@@ -6,6 +6,7 @@
 #include "Entity/Entity.h"
 #include "Events/AppEventQueue.h"
 #include "Events/ApplicationEvents.h"
+#include "TileMap/TileMap.h"
 
 #include <vector>
 
@@ -15,6 +16,7 @@ namespace Quartz
 	{
 	private:
 		std::vector<Entity*> m_Entities;
+		TileMap* m_tileMap = nullptr;
 		bool m_Running = true;
 
 	public:
@@ -25,7 +27,11 @@ namespace Quartz
 
 		virtual void handleApplicationEvent(AppEvent& event) override;
 
-		void clearEntities();
+		void clearEngine();
+
+		void registerEntity(Entity* entity);
+
+		void registerTileMap(TileMap* tileMap);
 		
 	};
 }

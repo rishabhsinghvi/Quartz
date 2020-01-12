@@ -26,6 +26,8 @@ namespace Quartz
 		m_deviceContext = dc;
 		m_renderWindow = m_deviceContext->m_Window->getRenderWindow();
 
+		m_Physics = std::make_unique<PhysicsEngine>();
+
 		m_deviceContext->m_resourceManager->loadAudioFromFile("Playing/Audio.json");
 		m_deviceContext->m_resourceManager->loadTexturesFromFile("Playing/Textures.json");
 		m_deviceContext->m_resourceManager->loadSpritesFromFile("Playing/Sprites.json");
@@ -44,11 +46,13 @@ namespace Quartz
 
 		auto entity = std::make_unique<PlayerEntity>(m_deviceContext);
 		entity->setSprite(sprite);
-		entity->setPosition(Vec2(0.0f, 920.0f));
+		entity->setPosition(Vec2(0.0f, 840.0f));
 		entity->setVelocity(Vec2(100.0f, 0.0f));
 
 		entity->createAnimationList("Reaper.json");
 		entity->setAnimation("WALKING_RIGHT");
+
+		m_Player = entity.get();
 
 		m_Entities.push_back(std::move(entity));
 
@@ -58,7 +62,12 @@ namespace Quartz
 
 		m_tileMap.createTileMap("Test.json");
 
+		m_Physics->registerEntity(m_Player);
+		m_Physics->registerTileMap(&m_tileMap);
 
+		m_View = m_renderWindow->getDefaultView();
+
+		m_renderWindow->setView(m_View);
 
 		m_Initialized = true;
 	}

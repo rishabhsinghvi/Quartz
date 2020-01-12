@@ -4,8 +4,10 @@
 #include "GameState.h"
 #include "UI/UIElement.h"
 #include "Entity/Entity.h"
+#include "Entity/PlayerEntity.h"
 #include "Animation/Animation.h"
 #include "TileMap/TileMap.h"
+#include "Physics/PhysicsEngine.h"
 
 namespace Quartz
 {
@@ -17,10 +19,13 @@ namespace Quartz
 		bool m_Initialized = false;
 		std::vector<std::unique_ptr<UIElement>> m_UIEntities;
 		std::vector<std::unique_ptr<Entity>> m_Entities;
+
+		std::unique_ptr<PhysicsEngine> m_Physics;
 		sf::View m_View;
 		//
 
 		TileMap m_tileMap;
+		PlayerEntity* m_Player = nullptr;
 		
 
 	public:

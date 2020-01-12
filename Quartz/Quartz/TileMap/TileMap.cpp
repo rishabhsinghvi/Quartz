@@ -37,6 +37,8 @@ namespace Quartz
 
 		auto texturePtr = m_deviceContext->m_resourceManager->getTexturePointer(m_textureName);
 
+		m_Collidable.resize(m_tileMapWidth * m_tileMapHeight);
+
 		for (const auto& layer : layers)
 		{
 			const auto& layerData = layer["data"];
@@ -69,8 +71,7 @@ namespace Quartz
 					quad[2].texCoords = sf::Vector2f((tu + 1) * m_tileSizeX, (tv + 1) * m_tileSizeY);
 					quad[3].texCoords = sf::Vector2f(tu * m_tileSizeX, (tv + 1) * m_tileSizeY);
 
-
-
+					m_Collidable[i + j * m_tileMapWidth] = root["collidable"][std::to_string(tileNumber)];
 				}
 			}
 
@@ -83,6 +84,31 @@ namespace Quartz
 	void TileMap::render() const
 	{
 		m_deviceContext->m_Window->getRenderWindow()->draw(*this);
+	}
+
+	unsigned int TileMap::getTileWidth() const
+	{
+		return m_tileSizeX;
+	}
+
+	unsigned int TileMap::getTileHeight() const
+	{
+		return m_tileSizeY;
+	}
+
+	unsigned int TileMap::getMapWidth() const
+	{
+		return m_tileMapWidth;
+	}
+
+	unsigned int TileMap::getMapHeight() const
+	{
+		return m_tileMapHeight;
+	}
+
+	bool TileMap::isCollidable(unsigned int x, unsigned int y) const
+	{
+		return m_Collidable[x + y * m_tileMapWidth];
 	}
 
 

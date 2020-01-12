@@ -36,7 +36,6 @@ namespace Quartz
 		m_Window = std::make_unique<Window>();
 		m_resourceManager = std::make_unique<ResourceManager>();
 		m_appEventQueue = std::make_unique<AppEventQueue>();
-		m_Physics = std::make_unique<PhysicsEngine>();
 
 		m_Window->init();
 		m_resourceManager->init();
