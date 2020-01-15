@@ -9,7 +9,12 @@ namespace Quartz
 
 	void PhysicsEngine::update(float dt)
 	{
+		// Add gravitational force to all entities
 
+		for (auto x : m_Entities)
+		{
+			x->addForce(QUARTZ_GRAVITY);
+		}
 	}
 
 	void PhysicsEngine::handleApplicationEvent(AppEvent& event)
@@ -26,7 +31,7 @@ namespace Quartz
 		m_tileMap = nullptr;
 	}
 
-	void PhysicsEngine::registerEntity(Entity* entity)
+	void PhysicsEngine::registerEntity(MoveableEntity* entity)
 	{
 		m_Entities.push_back(entity);
 	}

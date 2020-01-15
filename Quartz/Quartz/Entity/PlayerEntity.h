@@ -3,7 +3,6 @@
 
 #include "MoveableEntity.h"
 #include "DeviceContext.h"
-#include "Keycodes.h"
 
 #include<vector>
 #include<functional>
@@ -58,13 +57,8 @@ namespace Quartz
 
 		virtual void setToAnimation(const std::string& textureName, const std::string& animationName);
 
-		void buildMovementMatrix();
 	};
 
-	namespace Input
-	{
-		static Keycode getUserInput();
-	}
 
 }
 

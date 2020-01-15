@@ -22,7 +22,7 @@
 
 #ifdef QUARTZ_DEBUG
 
-#define LOG_ASSERT(CONDITION, ...)   if(!CONDITION){ LOG_ERROR("Assert failure at line {0} in file {1}: {2} ",__LINE__, __FILE__, __VA_ARGS__) __debugbreak();}
+#define LOG_ASSERT(CONDITION, ...)   if(!(CONDITION)){ LOG_ERROR("Assert failure at line {0} in file {1}: {2} ",__LINE__, __FILE__, __VA_ARGS__); __debugbreak();}
 #define LOG_FAILURE(...) LOG_CRITICAL("Exception occured at line {0} in file {1}: {2}", __LINE__, __FILE__, __VA_ARGS__); __debugbreak()
 #else
 

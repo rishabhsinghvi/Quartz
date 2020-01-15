@@ -26,6 +26,7 @@ namespace Quartz
 		Vec2 m_Pos;
 		Vec2 m_Vel;
 		Vec2 m_Acc;
+		Vec2 m_accumulatedForce;
 		unsigned int m_SpriteWidth;
 		unsigned int m_SpriteHeight;
 		std::unordered_map<std::string, std::unique_ptr<Animation>> m_AnimationList;
@@ -60,6 +61,8 @@ namespace Quartz
 		virtual void setAnimation(const std::string& name);
 
 		virtual void setSpriteDimensions(unsigned int w, unsigned int h);
+
+		void addForce(const Vec2& force);
 
 		Entity::EntityType getEntityType() const;
 

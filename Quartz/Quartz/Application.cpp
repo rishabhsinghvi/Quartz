@@ -1,7 +1,7 @@
 #include "Application.h"
+#include "Logger/Logger.h"
 
 #include<string>
-#include<iostream>
 
 
 namespace Quartz
@@ -32,38 +32,62 @@ namespace Quartz
 	void Application::init()
 	{
 		m_Timer = std::make_unique<Timer>();
+		
 		// Create and intialize all subsystems
+		
 		m_Window = std::make_unique<Window>();
 		m_resourceManager = std::make_unique<ResourceManager>();
 		m_appEventQueue = std::make_unique<AppEventQueue>();
+		m_inputHandler = std::make_unique<InputHandler>();
+		m_stateManager = std::make_unique<StateManager>();
+
+		m_deviceContext = std::make_unique<DeviceContext>();
+
+		// Register necessary systems with the DeviceContext
+
+		m_deviceContext->registerApplication(this);
+		m_deviceContext->registerWindow(m_Window.get());
+		m_deviceContext->registerResourceManager(m_resourceManager.get());
+		m_deviceContext->registerEventQueue(m_appEventQueue.get());
+		m_deviceContext->registerInputHandler(m_inputHandler.get());
+
+		// Initialize all systems
 
 		m_Window->init();
 		m_resourceManager->init();
 		
-		m_deviceContext = std::make_unique<DeviceContext>(m_resourceManager.get(), m_Window.get(), this, m_appEventQueue.get());
-
-		m_stateManager = std::make_unique<StateManager>();
-
 		m_stateManager->init(m_deviceContext.get());
+		m_inputHandler->init(m_deviceContext.get());
 
+		// Create event table
 		m_appEventQueue->registerObservable(EventType::StateChangeEvent, this);
 		m_appEventQueue->registerObservable(EventType::AppCloseEvent, this);
-		// Create EventMap
 		
 
 		// Load initial state
 		m_stateManager->loadState("MainMenu");
-
-		
 	}							
 
 	void Application::run()
 	{
 
+		/*float curDt = 0.0f;
+		int frames = 0;*/
+
 		m_Timer->reset();
 		while (m_isRunning)
 		{
 			auto dt = m_Timer->getDeltaT();
+
+		/*	frames++;
+			curDt += dt;
+
+			if (curDt >= 1.0f)
+			{
+				LOG_INFO("{0}", frames);
+				curDt = 0.0f;
+				frames = 0;
+			}*/
 
 			auto state = m_stateManager->getCurrentState();
 

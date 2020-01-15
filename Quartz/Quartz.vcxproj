@@ -142,6 +142,7 @@
     <ClCompile Include="Quartz\Application.cpp" />
     <ClCompile Include="Quartz\Entity\PlayerEntity.cpp" />
     <ClCompile Include="Quartz\Events\AppEventQueue.cpp" />
+    <ClCompile Include="Quartz\InputHandler.cpp" />
     <ClCompile Include="Quartz\Math\Vec2.cpp" />
     <ClCompile Include="Quartz\Physics\PhysicsEngine.cpp" />
     <ClCompile Include="Quartz\States\MainMenuState.cpp" />
@@ -165,7 +166,7 @@
     <ClInclude Include="Quartz\Events\AppEventQueue.h" />
     <ClInclude Include="Quartz\Events\ApplicationEvents.h" />
     <ClInclude Include="Quartz\InputHandler.h" />
-    <ClInclude Include="Quartz\Keycodes.h" />
+    <ClInclude Include="Quartz\Inputs.h" />
     <ClInclude Include="Quartz\Logger\Logger.h" />
     <ClInclude Include="Quartz\Logger\spdlog\async.h" />
     <ClInclude Include="Quartz\Logger\spdlog\async_logger-inl.h" />
@@ -260,6 +261,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Animation\Reaper.json" />
+    <None Include="Resources\Configs\InputMapping.json" />
     <None Include="Resources\Configs\MainMenu\Audio.json" />
     <None Include="Resources\Configs\MainMenu\Sprites.json" />
     <None Include="Resources\Configs\MainMenu\Textures.json" />

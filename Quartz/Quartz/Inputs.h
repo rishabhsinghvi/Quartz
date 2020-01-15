@@ -3,21 +3,30 @@
 
 namespace Quartz
 {
-	namespace Input {
-		enum Keycode
-		{
+	enum class Keycode
+	{
 			K_None = 0,
 			K_A,
 			K_D,
 			K_ShiftA,
 			K_ShiftD,
 			K_Space,
-			K_Mouse1,
+			M_Left,
 			K_AMouse1,
 			K_DMouse1
-		};
-		
-	}
+	};
+
+
+	enum class Action
+	{
+		A_None = 0,
+		A_Jump,
+		A_WalkRight,
+		A_WalkLeft,
+		A_RunRight,
+		A_RunLeft,
+		A_Slash
+	};
 }
 
 #endif

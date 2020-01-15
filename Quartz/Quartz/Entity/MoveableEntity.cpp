@@ -120,6 +120,11 @@ namespace Quartz
 		m_SpriteHeight = h;
 	}
 
+	void MoveableEntity::addForce(const Vec2& force)
+	{
+		m_accumulatedForce += force;
+	}
+
 	Entity::EntityType MoveableEntity::getEntityType() const
 	{
 		return m_entityType;

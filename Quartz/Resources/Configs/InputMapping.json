@@ -1,0 +1,8 @@
+{
+  "K_A": "WalkLeft",
+  "K_D": "WalkRight",
+  "K_Space": "Jump",
+  "K_Shift_A": "RunLeft",
+  "K_Shift_D": "RunRight",
+  "M_Left":  "Slash"
+}

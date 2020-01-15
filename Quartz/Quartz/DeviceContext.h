@@ -8,7 +8,7 @@ namespace Quartz
 	class Window;
 	class Application;
 	class AppEventQueue;
-
+	class InputHandler;
 	/*
 	**  DeviceContext is simply a struct containing references to all the common subsystems.
 	**  
@@ -20,13 +20,33 @@ namespace Quartz
 		Window* m_Window;
 		Application* m_Application;
 		AppEventQueue* m_appEventQueue;
+		InputHandler* m_inputHandler;
 
 		DeviceContext() = default;
 
-		DeviceContext(ResourceManager* resourceManager, Window* window, Application* app, AppEventQueue* aeq) :
-			m_resourceManager(resourceManager), m_Window(window), m_Application(app), m_appEventQueue(aeq)
+		void registerResourceManager(ResourceManager* rm)
 		{
-			// EMPTY
+			m_resourceManager = rm;
+		}
+
+		void registerWindow(Window* w)
+		{
+			m_Window = w;
+		}
+
+		void registerApplication(Application* app)
+		{
+			m_Application = app;
+		}
+
+		void registerEventQueue(AppEventQueue* aeq)
+		{
+			m_appEventQueue = aeq;
+		}
+
+		void registerInputHandler(InputHandler* ih)
+		{
+			m_inputHandler = ih;
 		}
 	};
 }

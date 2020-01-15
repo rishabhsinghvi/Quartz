@@ -69,6 +69,9 @@
     <ClCompile Include="Quartz\Physics\PhysicsEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Quartz\InputHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Quartz\Application.h">
@@ -368,10 +371,10 @@
     <ClInclude Include="Quartz\Physics\Constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Quartz\Keycodes.h">
+    <ClInclude Include="Quartz\InputHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Quartz\InputHandler.h">
+    <ClInclude Include="Quartz\Inputs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -383,6 +386,7 @@
     <None Include="Resources\Configs\Playing\Textures.json" />
     <None Include="Resources\Configs\Playing\Sprites.json" />
     <None Include="Resources\Animation\Reaper.json" />
+    <None Include="Resources\Configs\InputMapping.json" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Background.png">
