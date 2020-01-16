@@ -79,7 +79,7 @@ namespace Quartz
 		{
 			auto dt = m_Timer->getDeltaT();
 
-		/*	frames++;
+			/*frames++;
 			curDt += dt;
 
 			if (curDt >= 1.0f)

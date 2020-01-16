@@ -15,6 +15,7 @@ namespace Quartz
 	private:
 		DeviceContext* m_deviceContext = nullptr;
 		std::unordered_map<Keycode, Action> m_inputMapping;
+		bool m_isActive = true;
 
 	public:
 
@@ -25,6 +26,8 @@ namespace Quartz
 		virtual void handleApplicationEvent(AppEvent& event);
 
 	private:
+
+		void setActive(bool val);
 
 		Keycode getKeycodeFromInput() const;
 

@@ -40,4 +40,7 @@ namespace Quartz
 	{
 		m_tileMap = tileMap;
 	}
+	void PhysicsEngine::detectCollisions()
+	{
+	}
 }

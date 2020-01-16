@@ -5,7 +5,7 @@
 #include "Events/ApplicationEvents.h"
 #include "Events/AppEventQueue.h"
 #include "Entity/MoveableEntity.h"
-#include "Entity/PlayerEntity.h"
+#include "Entity/Player.h"
 #include "Logger/Logger.h"
 
 #ifdef QUARTZ_DEBUG
@@ -44,9 +44,9 @@ namespace Quartz
 		sprite.setPosition(0.0f, 0.0f);
 		sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
 
-		auto entity = std::make_unique<PlayerEntity>(m_deviceContext);
+		auto entity = std::make_unique<Player>(m_deviceContext);
 		entity->setSprite(sprite);
-		entity->setPosition(Vec2(0.0f, 840.0f));
+		entity->setPosition(Vec2(0.0f, 916.0f));
 		entity->setVelocity(Vec2(100.0f, 0.0f));
 
 		entity->createAnimationList("Reaper.json");
@@ -99,6 +99,7 @@ namespace Quartz
 
 	void PlayingState::update(float dt)
 	{
+		m_Physics->update(dt);
 		for (auto& x : m_Entities)
 		{
 			x->update(dt);

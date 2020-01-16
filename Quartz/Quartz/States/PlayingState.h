@@ -4,7 +4,7 @@
 #include "GameState.h"
 #include "UI/UIElement.h"
 #include "Entity/Entity.h"
-#include "Entity/PlayerEntity.h"
+#include "Entity/Player.h"
 #include "Animation/Animation.h"
 #include "TileMap/TileMap.h"
 #include "Physics/PhysicsEngine.h"
@@ -25,7 +25,7 @@ namespace Quartz
 		//
 
 		TileMap m_tileMap;
-		PlayerEntity* m_Player = nullptr;
+		Player* m_Player = nullptr;
 		
 
 	public:

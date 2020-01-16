@@ -9,7 +9,7 @@
 
 namespace Quartz
 {
-	class PlayerEntity : public MoveableEntity
+	class Player : public MoveableEntity
 	{
 	public:
 		enum ActionState
@@ -23,7 +23,7 @@ namespace Quartz
 		ActionState m_State = Idle;
 
 	public:
-		PlayerEntity(DeviceContext* dc);
+		Player(DeviceContext* dc);
 
 		virtual void setSprite(const sf::Sprite& sprite) override;
 

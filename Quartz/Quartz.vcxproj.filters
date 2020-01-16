@@ -54,9 +54,6 @@
     <ClCompile Include="Quartz\Entity\MoveableEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Quartz\Entity\PlayerEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Quartz\UI\UIText.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -70,6 +67,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Quartz\InputHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Quartz\Entity\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -120,9 +120,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Quartz\Entity\MoveableEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Quartz\Entity\PlayerEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Quartz\Logger\spdlog\details\backtracer.h">
@@ -377,6 +374,9 @@
     <ClInclude Include="Quartz\Inputs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Quartz\Entity\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Configs\MainMenu\Audio.json" />
@@ -387,6 +387,7 @@
     <None Include="Resources\Configs\Playing\Sprites.json" />
     <None Include="Resources\Animation\Reaper.json" />
     <None Include="Resources\Configs\InputMapping.json" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Background.png">

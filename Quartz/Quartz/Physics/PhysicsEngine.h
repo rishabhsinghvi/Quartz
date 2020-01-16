@@ -32,6 +32,8 @@ namespace Quartz
 		void registerEntity(MoveableEntity* entity);
 
 		void registerTileMap(TileMap* tileMap);
+
+		void detectCollisions();
 		
 	};
 }

@@ -14,7 +14,8 @@ namespace Quartz
 		StateChangeEvent,
 		AppCloseEvent,
 		PhysicsStartEvent,
-		PhysicsStopEvent
+		PhysicsStopEvent,
+		SetInputHandlerEvent
 	};
 
 	struct AppEvent;
@@ -47,11 +48,24 @@ namespace Quartz
 		// NOTHING
 	};
 
+	struct SetInputHandlerEvent
+	{
+		bool m_Value;
+
+		SetInputHandlerEvent() = default;
+
+		SetInputHandlerEvent(bool val) : m_Value(val) {}
+
+		~SetInputHandlerEvent() = default;
+	};
 
 	struct AppEvent
 	{
 		EventType eventType = EventType::None;
-		std::variant<StateChangeEvent, AppCloseEvent> m_Info;
+
+		std::variant<StateChangeEvent, 
+			AppCloseEvent, 
+			SetInputHandlerEvent> m_Info;
 
 		AppEvent() = default;
 

@@ -29,13 +29,24 @@ namespace Quartz
 
 	Action InputHandler::getUserInput() const
 	{
+		if (!m_isActive)
+			return Action::A_None;
+
 		Keycode keycode = getKeycodeFromInput();
 		return m_inputMapping.find(keycode)->second;
 	}
 
 	void InputHandler::handleApplicationEvent(AppEvent& event)
 	{
-		// InputHandler does not need to handle any kind of events
+		if (event.eventType == EventType::SetInputHandlerEvent)
+		{
+			setActive(std::get<SetInputHandlerEvent>(event.m_Info).m_Value);
+		}
+	}
+
+	void InputHandler::setActive(bool val)
+	{
+		m_isActive = val;
 	}
 
 	Keycode InputHandler::getKeycodeFromInput() const

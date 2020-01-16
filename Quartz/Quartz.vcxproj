@@ -114,7 +114,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)Quartz\External\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;sfml-audio.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -140,7 +140,7 @@
     <ClCompile Include="Quartz\Entity\MoveableEntity.cpp" />
     <ClCompile Include="Quartz.cpp" />
     <ClCompile Include="Quartz\Application.cpp" />
-    <ClCompile Include="Quartz\Entity\PlayerEntity.cpp" />
+    <ClCompile Include="Quartz\Entity\Player.cpp" />
     <ClCompile Include="Quartz\Events\AppEventQueue.cpp" />
     <ClCompile Include="Quartz\InputHandler.cpp" />
     <ClCompile Include="Quartz\Math\Vec2.cpp" />
@@ -162,7 +162,7 @@
     <ClInclude Include="Quartz\Application.h" />
     <ClInclude Include="Quartz\DeviceContext.h" />
     <ClInclude Include="Quartz\Entity\Entity.h" />
-    <ClInclude Include="Quartz\Entity\PlayerEntity.h" />
+    <ClInclude Include="Quartz\Entity\Player.h" />
     <ClInclude Include="Quartz\Events\AppEventQueue.h" />
     <ClInclude Include="Quartz\Events\ApplicationEvents.h" />
     <ClInclude Include="Quartz\InputHandler.h" />
@@ -260,6 +260,7 @@
     <ClInclude Include="Quartz\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="README.md" />
     <None Include="Resources\Animation\Reaper.json" />
     <None Include="Resources\Configs\InputMapping.json" />
     <None Include="Resources\Configs\MainMenu\Audio.json" />
