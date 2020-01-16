@@ -8,6 +8,7 @@
 #include "Animation/Animation.h"
 #include "TileMap/TileMap.h"
 #include "Physics/PhysicsEngine.h"
+#include "Level/Level.h"
 
 namespace Quartz
 {
@@ -20,11 +21,12 @@ namespace Quartz
 		std::vector<std::unique_ptr<UIElement>> m_UIEntities;
 		std::vector<std::unique_ptr<Entity>> m_Entities;
 
+		std::unique_ptr<Level> m_currentLevel;
+
 		std::unique_ptr<PhysicsEngine> m_Physics;
 		sf::View m_View;
 		//
 
-		TileMap m_tileMap;
 		Player* m_Player = nullptr;
 		
 

@@ -72,6 +72,9 @@
     <ClCompile Include="Quartz\Entity\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Quartz\Level\Level.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Quartz\Application.h">
@@ -377,6 +380,9 @@
     <ClInclude Include="Quartz\Entity\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Quartz\Level\Level.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Configs\MainMenu\Audio.json" />
@@ -388,6 +394,8 @@
     <None Include="Resources\Animation\Reaper.json" />
     <None Include="Resources\Configs\InputMapping.json" />
     <None Include="README.md" />
+    <None Include="Resources\Levels\Level1.json" />
+    <None Include="Resources\TileMap\Test.json" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Textures\Background.png">

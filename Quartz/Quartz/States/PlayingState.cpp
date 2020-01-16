@@ -1,7 +1,6 @@
 #include "PlayingState.h"
 #include "DeviceContext.h"
 #include "ResourceManager.h"
-#include "Window.h"
 #include "Events/ApplicationEvents.h"
 #include "Events/AppEventQueue.h"
 #include "Entity/MoveableEntity.h"
@@ -24,7 +23,7 @@ namespace Quartz
 			return;
 
 		m_deviceContext = dc;
-		m_renderWindow = m_deviceContext->m_Window->getRenderWindow();
+		//m_renderWindow = m_deviceContext->m_Window->getRenderWindow();
 
 		m_Physics = std::make_unique<PhysicsEngine>();
 
@@ -32,9 +31,13 @@ namespace Quartz
 		m_deviceContext->m_resourceManager->loadTexturesFromFile("Playing/Textures.json");
 		m_deviceContext->m_resourceManager->loadSpritesFromFile("Playing/Sprites.json");
 
+		m_currentLevel = std::make_unique<Level>("Level1", m_deviceContext);
+
+		
+
 
 		// Create sprite to hold texture when paused
-		auto tempSprite = std::make_unique<sf::Sprite>();
+		/*auto tempSprite = std::make_unique<sf::Sprite>();
 
 
 
@@ -50,24 +53,24 @@ namespace Quartz
 		entity->setVelocity(Vec2(100.0f, 0.0f));
 
 		entity->createAnimationList("Reaper.json");
-		entity->setAnimation("WALKING_RIGHT");
+		entity->setAnimation("IDLE_RIGHT");
 
 		m_Player = entity.get();
 
-		m_Entities.push_back(std::move(entity));
+		m_Entities.push_back(std::move(entity));*/
 
 		m_deviceContext->m_resourceManager->playMusic("PLAYING_AUDIO");
 
-		m_tileMap = TileMap("TEST_SS", 100, 100, 20, 11, m_deviceContext);
+		//m_tileMap = TileMap("TEST_SS", 100, 100, 20, 11, m_deviceContext);
 
-		m_tileMap.createTileMap("Test.json");
+		//m_tileMap.createTileMap("Test.json");
 
-		m_Physics->registerEntity(m_Player);
-		m_Physics->registerTileMap(&m_tileMap);
+		//m_Physics->registerEntity(m_Player);
+		//m_Physics->registerTileMap(&m_tileMap);
 
-		m_View = m_renderWindow->getDefaultView();
+		/*m_View = m_renderWindow->getDefaultView();
 
-		m_renderWindow->setView(m_View);
+		m_renderWindow->setView(m_View);*/
 
 		m_Initialized = true;
 	}
@@ -89,21 +92,24 @@ namespace Quartz
 
 	void PlayingState::render()
 	{
-		m_renderWindow->draw(m_deviceContext->m_resourceManager->getSprite("PLAYING_SP"));
+		m_currentLevel->render();
+		/*m_renderWindow->draw(m_deviceContext->m_resourceManager->getSprite("PLAYING_SP"));
 
 		m_tileMap.render();
 
 		for (auto& x : m_Entities)
-			x->render();
+			x->render();*/
 	}
 
 	void PlayingState::update(float dt)
 	{
-		m_Physics->update(dt);
-		for (auto& x : m_Entities)
+		m_currentLevel->update(dt);
+	/*	for (auto& x : m_Entities)
 		{
 			x->update(dt);
 		}
+
+		m_Physics->update(dt);*/
 		
 	}
 

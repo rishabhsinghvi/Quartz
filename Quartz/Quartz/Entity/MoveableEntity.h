@@ -26,7 +26,6 @@ namespace Quartz
 		Vec2 m_Pos;
 		Vec2 m_Vel;
 		Vec2 m_Acc;
-		Vec2 m_accumulatedForce;
 		unsigned int m_SpriteWidth;
 		unsigned int m_SpriteHeight;
 		std::unordered_map<std::string, std::unique_ptr<Animation>> m_AnimationList;
@@ -38,13 +37,17 @@ namespace Quartz
 
 		MoveableEntity(DeviceContext* w);
 
-		virtual void setSprite(const sf::Sprite& sprite); 
+		virtual void setSprite(const sf::Sprite& sprite) override; 
 
 		virtual void update(float dt) override;
 
 		virtual void render() const override;
 		
 		virtual sf::Sprite* getSprite() override;
+
+		const Vec2& getPosition() const;
+
+		const Vec2& getVelocity() const;
 
 		virtual void setPosition(const Vec2& pos);
 
@@ -62,7 +65,7 @@ namespace Quartz
 
 		virtual void setSpriteDimensions(unsigned int w, unsigned int h);
 
-		void addForce(const Vec2& force);
+		void addAcceleration(const Vec2& force);
 
 		Entity::EntityType getEntityType() const;
 

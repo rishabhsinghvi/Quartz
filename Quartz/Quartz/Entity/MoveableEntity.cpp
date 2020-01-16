@@ -25,7 +25,7 @@ namespace Quartz
 
 	void MoveableEntity::update(float dt)
 	{
-		
+		m_Animation->update(dt);
 	}
 
 	void MoveableEntity::render() const
@@ -36,6 +36,16 @@ namespace Quartz
 	sf::Sprite* MoveableEntity::getSprite()
 	{
 		return &m_Sprite;
+	}
+
+	const Vec2& MoveableEntity::getPosition() const
+	{
+		return m_Pos;
+	}
+
+	const Vec2& MoveableEntity::getVelocity() const
+	{
+		return m_Vel;
 	}
 
 	void MoveableEntity::setPosition(const Vec2& pos)
@@ -120,10 +130,11 @@ namespace Quartz
 		m_SpriteHeight = h;
 	}
 
-	void MoveableEntity::addForce(const Vec2& force)
+	void MoveableEntity::addAcceleration(const Vec2& force)
 	{
-		m_accumulatedForce += force;
+		m_Acc += force;
 	}
+
 
 	Entity::EntityType MoveableEntity::getEntityType() const
 	{

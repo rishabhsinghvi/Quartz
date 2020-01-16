@@ -13,7 +13,7 @@ namespace Quartz
 
 		for (auto x : m_Entities)
 		{
-			x->addForce(QUARTZ_GRAVITY);
+			x->addAcceleration(QUARTZ_GRAVITY);
 		}
 	}
 
