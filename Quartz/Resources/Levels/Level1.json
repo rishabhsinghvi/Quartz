@@ -30,7 +30,7 @@
     },
 
     {
-      "ENTITY_TYPE": "COLLECTIBLE",
+      "ENTITY_TYPE": "ENEMY",
       "ENTITY_MOVEABLE": true,
       "ENTITY_SPRITE_TEXTURE": "REAPER_IDLE_LEFT",
       "ENTITY_SPRITE_RECT_X": 0,
