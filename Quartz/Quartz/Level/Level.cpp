@@ -36,6 +36,16 @@ namespace Quartz
 		}
 	}
 
+	const std::vector<std::unique_ptr<MoveableEntity>>& Level::getEntities() const
+	{
+		return m_Entities;
+	}
+
+	const std::unique_ptr<TileMap>& Level::getTileMap() const
+	{
+		return m_tileMap;
+	}
+
 	void Level::buildLevel()
 	{
 		using json = nlohmann::json;
@@ -78,6 +88,7 @@ namespace Quartz
 			sf::Sprite sprite;
 			sprite.setTexture(m_deviceContext->m_resourceManager->getTexture(textureName));
 			sprite.setTextureRect(sf::IntRect(x, y, w, h));
+			
 
 			std::unique_ptr<MoveableEntity> ent;
 

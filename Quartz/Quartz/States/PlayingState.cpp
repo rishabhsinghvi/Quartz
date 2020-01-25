@@ -31,9 +31,9 @@ namespace Quartz
 		m_deviceContext->m_resourceManager->loadTexturesFromFile("Playing/Textures.json");
 		m_deviceContext->m_resourceManager->loadSpritesFromFile("Playing/Sprites.json");
 
-		m_currentLevel = std::make_unique<Level>("Level1", m_deviceContext);
+		//m_currentLevel = std::make_unique<Level>("Level1", m_deviceContext);
 
-		
+		createLevel("Level1");
 
 
 		// Create sprite to hold texture when paused
@@ -104,13 +104,7 @@ namespace Quartz
 	void PlayingState::update(float dt)
 	{
 		m_currentLevel->update(dt);
-	/*	for (auto& x : m_Entities)
-		{
-			x->update(dt);
-		}
-
-		m_Physics->update(dt);*/
-		
+		m_Physics->update(dt);
 	}
 
 	void PlayingState::handleInput(sf::Event& event)
@@ -134,6 +128,27 @@ namespace Quartz
 	bool PlayingState::isInitialized() const
 	{
 		return m_Initialized;
+	}
+
+	void PlayingState::createLevel(const std::string& levelName)
+	{
+		m_currentLevel.reset();
+		m_currentLevel = std::make_unique<Level>(levelName, m_deviceContext);
+
+		m_Physics->clearEngine();
+
+		// Register All Entities
+		for (const auto& entity : m_currentLevel->getEntities())
+		{
+			m_Physics->registerEntity(entity.get());
+		}
+
+
+		// Register Tilemap (for Collision Detection)
+
+		m_Physics->registerTileMap(m_currentLevel->getTileMap().get());
+		
+
 	}
 
 

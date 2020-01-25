@@ -48,6 +48,8 @@ namespace Quartz
 		virtual void handleInput(sf::Event& event) override;
 
 		virtual bool isInitialized() const override;
+
+		void createLevel(const std::string& levelName);
 	};
 }
 

@@ -5,7 +5,7 @@
 
 namespace Quartz
 {
-	static const Vec2 QUARTZ_GRAVITY = Vec2(0.0f, -10.f);
+	static const Vec2 QUARTZ_GRAVITY = Vec2(0.0f, 0.05f);
 	static constexpr float QUARTZ_PI = 3.141592653589793f;
 }
 

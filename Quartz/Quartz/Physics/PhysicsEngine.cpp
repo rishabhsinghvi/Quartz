@@ -15,6 +15,10 @@ namespace Quartz
 		{
 			x->addAcceleration(QUARTZ_GRAVITY);
 		}
+
+
+
+
 	}
 
 	void PhysicsEngine::handleApplicationEvent(AppEvent& event)

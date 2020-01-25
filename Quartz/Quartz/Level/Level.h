@@ -36,6 +36,10 @@ namespace Quartz
 
 		void update(float dt);
 
+		const std::vector<std::unique_ptr<MoveableEntity>>& getEntities() const;
+
+		const std::unique_ptr<TileMap>& getTileMap() const;
+
 	private:
 
 		void buildLevel();
