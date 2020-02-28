@@ -295,6 +295,18 @@ namespace Quartz
 		m_currentMusic.play();
 	}
 
+	void ResourceManager::playSound(const std::string& name)
+	{
+		auto found = m_soundCache.find(name);
+		if (found == m_soundCache.end())
+		{
+			LOG_WARN("ResourceManager: Sound {0} not found.", name);
+			return;
+		}
+
+		found->second->play();
+	}
+
 
 
 }

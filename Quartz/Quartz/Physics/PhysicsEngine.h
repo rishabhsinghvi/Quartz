@@ -3,6 +3,7 @@
 
 #include "Math/Vec2.h"
 #include "Constants.h"
+#include "Entity/Entity.h"
 #include "Entity/MoveableEntity.h"
 #include "Events/AppEventQueue.h"
 #include "Events/ApplicationEvents.h"
@@ -15,7 +16,7 @@ namespace Quartz
 	class PhysicsEngine: public Observable
 	{
 	private:
-		std::vector<MoveableEntity*> m_Entities;
+		std::vector<Entity*> m_Entities;
 		TileMap* m_tileMap = nullptr;
 		bool m_Running = true;
 
@@ -29,7 +30,9 @@ namespace Quartz
 
 		void clearEngine();
 
-		void registerEntity(MoveableEntity* entity);
+		void registerEntityList(const std::vector<std::unique_ptr<Entity>>& entityList);
+
+		void registerEntity(Entity* entity);
 
 		void registerTileMap(TileMap* tileMap);
 

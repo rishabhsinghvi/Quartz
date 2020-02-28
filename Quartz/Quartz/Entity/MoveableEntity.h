@@ -3,8 +3,6 @@
 
 #include "Entity.h"
 #include "DeviceContext.h"
-#include "Math/Vec2.h"
-#include "Animation/Animation.h"
 
 #include <unordered_map>
 #include <string>
@@ -20,15 +18,8 @@ namespace Quartz
 			Left, Right
 		};
 	protected:
-		DeviceContext* m_deviceContext;
-		Animation* m_Animation = nullptr;
-		sf::Sprite m_Sprite;
-		Vec2 m_Pos;
 		Vec2 m_Vel;
 		Vec2 m_Acc;
-		unsigned int m_SpriteWidth;
-		unsigned int m_SpriteHeight;
-		std::unordered_map<std::string, std::unique_ptr<Animation>> m_AnimationList;
 		Direction m_Direction = Right;
 		Entity::EntityType m_entityType = Entity::EntityType::Moveable;
 
@@ -37,15 +28,15 @@ namespace Quartz
 
 		MoveableEntity(DeviceContext* w);
 
-		virtual void setSprite(const sf::Sprite& sprite) override; 
+		virtual void setSprite(const sf::Sprite& sprite) override;
 
 		virtual void update(float dt) override;
 
 		virtual void render() const override;
-		
+
 		virtual sf::Sprite* getSprite() override;
 
-		const Vec2& getPosition() const;
+		virtual const Vec2& getPosition() const;
 
 		const Vec2& getVelocity() const;
 
@@ -60,7 +51,7 @@ namespace Quartz
 		virtual Direction getDirection() const;
 
 		virtual void createAnimationList(const std::string& fileName);
-		
+
 		virtual void setAnimation(const std::string& name);
 
 		virtual void setSpriteDimensions(unsigned int w, unsigned int h);

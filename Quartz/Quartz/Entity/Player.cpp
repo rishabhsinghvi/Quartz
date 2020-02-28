@@ -12,7 +12,9 @@ namespace Quartz
 {
 	Player::Player(DeviceContext* dc): MoveableEntity(dc)
 	{
+
 	}
+
 	void Player::setSprite(const sf::Sprite& sprite)
 	{
 		MoveableEntity::setSprite(sprite);
@@ -60,6 +62,7 @@ namespace Quartz
 				m_Pos += (m_Vel * RUNNING_SPEEDUP) * dt;
 				m_Sprite.setPosition(m_Pos.x, m_Pos.y);
 				m_Animation->update(dt);
+				m_deviceContext->m_resourceManager->playSound("RUNNING_AUDIO");
 			}
 		}
 

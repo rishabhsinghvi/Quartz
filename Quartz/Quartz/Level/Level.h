@@ -18,7 +18,7 @@ namespace Quartz
 	private:
 		std::string m_Level;
 		std::unique_ptr<TileMap> m_tileMap;
-		std::vector<std::unique_ptr<MoveableEntity>> m_Entities;
+		std::vector<std::unique_ptr<Entity>> m_Entities;
 		bool m_levelBuilt = false;
 		std::string m_backgroundSprite;
 
@@ -36,9 +36,10 @@ namespace Quartz
 
 		void update(float dt);
 
-		const std::vector<std::unique_ptr<MoveableEntity>>& getEntities() const;
+		const std::vector<std::unique_ptr<Entity>>& getEntityList() const;
 
 		const std::unique_ptr<TileMap>& getTileMap() const;
+
 
 	private:
 

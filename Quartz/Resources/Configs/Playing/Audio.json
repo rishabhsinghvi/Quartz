@@ -1,4 +1,8 @@
 {
+  "RUNNING_AUDIO": {
+    "FILE_PATH": "../Quartz/Resources/Audio/Running.ogg",
+    "STREAMABLE": false
+  },
   "PLAYING_AUDIO": {
     "FILE_PATH": "../Quartz/Resources/Audio/Playing.ogg",
     "STREAMABLE": true

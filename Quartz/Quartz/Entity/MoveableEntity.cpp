@@ -14,33 +14,33 @@ namespace Quartz
 {
 	extern const std::string ANIMATION_DIRECTORY;
 
-	MoveableEntity::MoveableEntity(DeviceContext* w): m_deviceContext(w)
+	MoveableEntity::MoveableEntity(DeviceContext* w): Entity(w)
 	{	
 	}
 
 	void MoveableEntity::setSprite(const sf::Sprite& sprite)
 	{
-		m_Sprite = sprite;
+		Entity::setSprite(sprite);
 	}
 
 	void MoveableEntity::update(float dt)
 	{
-		m_Animation->update(dt);
+		Entity::update(dt);
 	}
 
 	void MoveableEntity::render() const
 	{
-		m_deviceContext->m_Window->getRenderWindow()->draw(m_Sprite);
+		Entity::render();
 	}
 
 	sf::Sprite* MoveableEntity::getSprite()
 	{
-		return &m_Sprite;
+		return Entity::getSprite();
 	}
 
 	const Vec2& MoveableEntity::getPosition() const
 	{
-		return m_Pos;
+		return Entity::getPosition();
 	}
 
 	const Vec2& MoveableEntity::getVelocity() const
@@ -50,8 +50,7 @@ namespace Quartz
 
 	void MoveableEntity::setPosition(const Vec2& pos)
 	{
-		m_Pos = pos;
-		m_Sprite.setPosition(m_Pos.x, m_Pos.y);
+		Entity::setPosition(pos);
 	}
 
 	void MoveableEntity::setVelocity(const Vec2& vel)
@@ -71,63 +70,18 @@ namespace Quartz
 
 	void MoveableEntity::createAnimationList(const std::string& fileName)
 	{
-		using json = nlohmann::json;
-		
-		std::ifstream file(ANIMATION_DIRECTORY + fileName);
-
-		if (!file)
-		{
-			LOG_ERROR("Unable to open Animation file: {0}", fileName);
-		}
-
-		json root;
-
-		file >> root;
-
-		for (auto it = root.begin(); it != root.end(); it++)
-		{
-			auto anim = std::make_unique<Animation>();
-
-			anim->setSprite(&m_Sprite);
-
-			auto animName = it.key();
-			
-			auto val = it.value();
-
-			anim->setLooping(val["LOOP"]);
-			auto array = val["FRAMES"];
-			for (json& f : array)
-			{
-				auto x = f["x"];
-				auto y = f["y"];
-				auto w = f["width"];
-				auto h = f["height"];
-				auto dur = f["duration"];
-
-				anim->addFrame(x, y, w, h, dur);
-			}
-
-			m_AnimationList[animName] = std::move(anim);
-		}
+		Entity::createAnimationList(fileName);
 
 	}
 
 	void MoveableEntity::setAnimation(const std::string& name)
 	{
-		auto find = m_AnimationList.find(name);
-
-		if (find == m_AnimationList.end())
-		{
-			LOG_ERROR("Unable to open Animation file: {0}", name);
-		}
-		
-		m_Animation = find->second.get();
+		Entity::setAnimation(name);
 	}
 
 	void MoveableEntity::setSpriteDimensions(unsigned int w, unsigned int h)
 	{
-		m_SpriteWidth = w;
-		m_SpriteHeight = h;
+		Entity::setSpriteDimensions(w, h);
 	}
 
 	void MoveableEntity::addAcceleration(const Vec2& force)
@@ -145,11 +99,5 @@ namespace Quartz
 	{
 		m_Direction = dir;
 	}
-
-
-
-
-
-
 
 }

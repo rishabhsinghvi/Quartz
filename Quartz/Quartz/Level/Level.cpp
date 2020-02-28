@@ -36,10 +36,11 @@ namespace Quartz
 		}
 	}
 
-	const std::vector<std::unique_ptr<MoveableEntity>>& Level::getEntities() const
+	const std::vector<std::unique_ptr<Entity>>& Level::getEntityList() const
 	{
 		return m_Entities;
 	}
+
 
 	const std::unique_ptr<TileMap>& Level::getTileMap() const
 	{

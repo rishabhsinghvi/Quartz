@@ -60,6 +60,9 @@ namespace Quartz
 		void pauseMusic();
 
 		void resumeMusic();
+
+		void playSound(const std::string& name);
+
 	};
 }
 

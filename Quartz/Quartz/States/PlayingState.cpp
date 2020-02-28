@@ -23,55 +23,21 @@ namespace Quartz
 			return;
 
 		m_deviceContext = dc;
-		//m_renderWindow = m_deviceContext->m_Window->getRenderWindow();
 
 		m_Physics = std::make_unique<PhysicsEngine>();
 
+
+		// Load data persistent with all levels
 		m_deviceContext->m_resourceManager->loadAudioFromFile("Playing/Audio.json");
 		m_deviceContext->m_resourceManager->loadTexturesFromFile("Playing/Textures.json");
 		m_deviceContext->m_resourceManager->loadSpritesFromFile("Playing/Sprites.json");
 
-		//m_currentLevel = std::make_unique<Level>("Level1", m_deviceContext);
 
+		// Create level 
 		createLevel("Level1");
 
-
-		// Create sprite to hold texture when paused
-		/*auto tempSprite = std::make_unique<sf::Sprite>();
-
-
-
-
-		sf::Sprite sprite;
-		sprite.setTexture(m_deviceContext->m_resourceManager->getTexture("REAPER_IDLE_RIGHT"));
-		sprite.setPosition(0.0f, 0.0f);
-		sprite.setTextureRect(sf::IntRect(0, 0, 100, 100));
-
-		auto entity = std::make_unique<Player>(m_deviceContext);
-		entity->setSprite(sprite);
-		entity->setPosition(Vec2(0.0f, 916.0f));
-		entity->setVelocity(Vec2(100.0f, 0.0f));
-
-		entity->createAnimationList("Reaper.json");
-		entity->setAnimation("IDLE_RIGHT");
-
-		m_Player = entity.get();
-
-		m_Entities.push_back(std::move(entity));*/
-
+		// Start level audio; should probably change this if/when different levels have different audio
 		m_deviceContext->m_resourceManager->playMusic("PLAYING_AUDIO");
-
-		//m_tileMap = TileMap("TEST_SS", 100, 100, 20, 11, m_deviceContext);
-
-		//m_tileMap.createTileMap("Test.json");
-
-		//m_Physics->registerEntity(m_Player);
-		//m_Physics->registerTileMap(&m_tileMap);
-
-		/*m_View = m_renderWindow->getDefaultView();
-
-		m_renderWindow->setView(m_View);*/
-
 		m_Initialized = true;
 	}
 
@@ -138,7 +104,7 @@ namespace Quartz
 		m_Physics->clearEngine();
 
 		// Register All Entities
-		for (const auto& entity : m_currentLevel->getEntities())
+		for (const auto& entity : m_currentLevel->getEntityList())
 		{
 			m_Physics->registerEntity(entity.get());
 		}

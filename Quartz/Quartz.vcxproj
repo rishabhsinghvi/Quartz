@@ -78,7 +78,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\Quartz\Quartz;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <PreprocessorDefinitions>QUARTZ_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>QUARTZ_DEBUG;%(PreprocessorDefinitions);DRAW_DEBUG_SHAPE</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Quartz\External\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -93,6 +93,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\Quartz\Quartz;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions);DRAW_DEBUG_SHAPE</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Quartz\External\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -137,6 +138,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Quartz\Animation\Animation.cpp" />
+    <ClCompile Include="Quartz\Entity\Entity.cpp" />
     <ClCompile Include="Quartz\Entity\MoveableEntity.cpp" />
     <ClCompile Include="Quartz.cpp" />
     <ClCompile Include="Quartz\Application.cpp" />

@@ -1,4 +1,8 @@
 #include "PhysicsEngine.h"
+#include "Logger/Logger.h"
+
+
+#include "SFML/Graphics.hpp"
 
 namespace Quartz
 {
@@ -11,11 +15,23 @@ namespace Quartz
 	{
 		// Add gravitational force to all entities
 
+		// for Debugging
+
+
 		for (auto x : m_Entities)
 		{
 			x->addAcceleration(QUARTZ_GRAVITY);
-		}
 
+			int _x = x->getPosition().x / m_tileMap->getTileWidth();
+			int _y = x->getPosition().y / m_tileMap->getTileHeight();
+
+			static bool display = true;
+			if (display)
+			{
+				LOG_INFO("{0}, {1}, {2}", _x, _y, m_tileMap->isCollidable(_x, _y));
+				display = false;
+			}
+		}
 
 
 
@@ -35,7 +51,15 @@ namespace Quartz
 		m_tileMap = nullptr;
 	}
 
-	void PhysicsEngine::registerEntity(MoveableEntity* entity)
+	void PhysicsEngine::registerEntityList(const std::vector<std::unique_ptr<Entity>>& entityList)
+	{
+		for (const auto& entity : entityList)
+		{
+			m_Entities.push_back(entity.get());
+		}
+	}
+
+	void PhysicsEngine::registerEntity(Entity* entity)
 	{
 		m_Entities.push_back(entity);
 	}
