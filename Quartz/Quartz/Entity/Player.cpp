@@ -42,8 +42,10 @@ namespace Quartz
 				}
 				else
 				{
-					m_Pos += (m_Vel * RUNNING_SPEEDUP) * dt;
-					m_Sprite.setPosition(m_Pos.x, m_Pos.y);
+					auto deltaPos = (m_Vel * RUNNING_SPEEDUP) * dt;
+					setPosition(m_Pos + deltaPos);
+					/*m_Pos += (m_Vel * RUNNING_SPEEDUP) * dt;
+					m_Sprite.setPosition(m_Pos.x, m_Pos.y);*/
 					m_Animation->update(dt);
 				}
 			}
@@ -59,8 +61,10 @@ namespace Quartz
 			}
 			else
 			{
-				m_Pos += (m_Vel * RUNNING_SPEEDUP) * dt;
-				m_Sprite.setPosition(m_Pos.x, m_Pos.y);
+				/*m_Pos += (m_Vel * RUNNING_SPEEDUP) * dt;
+				m_Sprite.setPosition(m_Pos.x, m_Pos.y);*/
+				auto deltaPos = (m_Vel * RUNNING_SPEEDUP) * dt;
+				setPosition(m_Pos + deltaPos);
 				m_Animation->update(dt);
 				m_deviceContext->m_resourceManager->playSound("RUNNING_AUDIO");
 			}
@@ -77,8 +81,11 @@ namespace Quartz
 			}
 			else
 			{
-				m_Pos -= (m_Vel * RUNNING_SPEEDUP) * dt;
-				m_Sprite.setPosition(m_Pos.x, m_Pos.y);
+				//m_Pos -= (m_Vel * RUNNING_SPEEDUP) * dt;
+				//m_Sprite.setPosition(m_Pos.x, m_Pos.y);
+
+				auto deltaPos = (m_Vel * RUNNING_SPEEDUP) * dt;
+				setPosition(m_Pos - deltaPos);
 				m_Animation->update(dt);
 			}
 		}
@@ -96,8 +103,9 @@ namespace Quartz
 			}
 			else if (m_Direction == MoveableEntity::Direction::Right)
 			{
-				m_Pos += m_Vel * dt;
-				m_Sprite.setPosition(m_Pos.x, m_Pos.y);
+				auto deltaPos = m_Vel * dt;
+				setPosition(m_Pos + deltaPos);
+				//m_Sprite.setPosition(m_Pos.x, m_Pos.y);
 				m_Animation->update(dt);
 			}
 		}
@@ -112,8 +120,10 @@ namespace Quartz
 			}
 			else if (m_Direction == MoveableEntity::Direction::Left)
 			{
-				m_Pos -= (m_Vel * dt);
-				m_Sprite.setPosition(m_Pos.x, m_Pos.y);
+				//m_Pos -= (m_Vel * dt);
+				//m_Sprite.setPosition(m_Pos.x, m_Pos.y);
+				auto deltaPos = m_Vel * dt;
+				setPosition(m_Pos - deltaPos);
 				m_Animation->update(dt);
 			}
 			
@@ -216,9 +226,9 @@ namespace Quartz
 		MoveableEntity::setAnimation(name);
 	}
 
-	void Player::setSpriteDimensions(unsigned int w, unsigned int h)
+	void Player::setBoundingBoxDimensions(unsigned int w, unsigned int h)
 	{
-		MoveableEntity::setSpriteDimensions(w, h);
+		MoveableEntity::setBoundingBoxDimensions(w, h);
 	}
 
 	float Player::getPositionX() const

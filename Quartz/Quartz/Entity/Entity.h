@@ -24,14 +24,24 @@ namespace Quartz
 		{
 			Default, Moveable 
 		};
+
+		struct BoundingBoxData
+		{
+			sf::Rect<float> m_BoundingBox;
+			float width;
+			float height;
+			float x; 
+			float y; 
+		};
 	protected:
 		DeviceContext* m_deviceContext = nullptr;
 		Animation* m_Animation = nullptr;
 		sf::Sprite m_Sprite;
-		Vec2 m_Pos; 
-		unsigned int m_SpriteWidth;
-		unsigned int m_SpriteHeight;
-		std::unordered_map<std::string, std::unique_ptr<Animation>> m_AnimationList;
+		Vec2 m_Pos;
+
+		std::unordered_map<std::string, std::unique_ptr<Animation>> m_AnimationList;		
+
+		BoundingBoxData m_BoundingBoxData;
 
 #ifdef DRAW_DEBUG_SHAPE
 		sf::RectangleShape m_debugShape;
@@ -55,7 +65,11 @@ namespace Quartz
 
 		virtual void setAnimation(const std::string& name);
 
-		virtual void setSpriteDimensions(unsigned int w, unsigned int h);
+		virtual void setBoundingBoxDimensions(float w, float h);
+
+		virtual void setBoundingBoxPositions(float x, float y);
+
+		virtual void setBoundingBox(float x, float y, float w, float h);
 
 		virtual void addAcceleration(const Vec2& force);
 
@@ -64,6 +78,9 @@ namespace Quartz
 		virtual void render() const;
 
 		virtual sf::Sprite* getSprite();
+
+		const BoundingBoxData& getBoundingBoxData() const;
+
 
 	};
 }

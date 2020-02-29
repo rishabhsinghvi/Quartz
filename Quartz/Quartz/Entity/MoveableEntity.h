@@ -54,7 +54,7 @@ namespace Quartz
 
 		virtual void setAnimation(const std::string& name);
 
-		virtual void setSpriteDimensions(unsigned int w, unsigned int h);
+		virtual void setBoundingBoxDimensions(unsigned int w, unsigned int h);
 
 		void addAcceleration(const Vec2& force);
 

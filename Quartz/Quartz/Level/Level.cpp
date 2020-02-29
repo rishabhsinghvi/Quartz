@@ -106,13 +106,15 @@ namespace Quartz
 			ent->setSprite(sprite);
 			ent->setPosition(Vec2(entityPosX * static_cast<float>(WINDOW_WIDTH), entityPosY * static_cast<float>(WINDOW_HEIGHT)));
 
-			LOG_INFO("{0}, {1}", WINDOW_WIDTH, WINDOW_HEIGHT);
-			LOG_INFO("{0}, {1}", ent->getPosition().x, ent->getPosition().y);
+			//LOG_INFO("{0}, {1}", WINDOW_WIDTH, WINDOW_HEIGHT);
+			//LOG_INFO("{0}, {1}", ent->getPosition().x, ent->getPosition().y);
 
 			ent->setVelocity(Vec2(entity["ENTITY_INI_VEL_X"], entity["ENTITY_INI_VEL_Y"]));
 			
 			ent->createAnimationList(entity["ENTITY_ANIMATION_LIST"]);
 			ent->setAnimation(entity["ENTITY_INI_ANIMATION"]);
+			//ent->setBoundingBoxDimensions(entity["ENTITY_BOUNDING_BOX_WIDTH"], entity["ENTITY_BOUNDING_BOX_HEIGHT"]);
+			ent->setBoundingBox(entity["ENTITY_BOUNDING_BOX_POS_X"], entity["ENTITY_BOUNDING_BOX_POS_Y"], entity["ENTITY_BOUNDING_BOX_WIDTH"], entity["ENTITY_BOUNDING_BOX_HEIGHT"]);
 
 			if (entityType == "PLAYER")
 				m_Player = static_cast<Player*>(ent.get());

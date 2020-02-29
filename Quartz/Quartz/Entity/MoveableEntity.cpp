@@ -79,9 +79,9 @@ namespace Quartz
 		Entity::setAnimation(name);
 	}
 
-	void MoveableEntity::setSpriteDimensions(unsigned int w, unsigned int h)
+	void MoveableEntity::setBoundingBoxDimensions(unsigned int w, unsigned int h)
 	{
-		Entity::setSpriteDimensions(w, h);
+		Entity::setBoundingBoxDimensions(w, h);
 	}
 
 	void MoveableEntity::addAcceleration(const Vec2& force)

@@ -7,6 +7,8 @@
 namespace Quartz
 {
 	extern const std::string ANIMATION_DIRECTORY;
+	extern const unsigned int WINDOW_WIDTH;
+	extern const unsigned int WINDOW_HEIGHT;
 }
 
 Quartz::Entity::Entity(DeviceContext* dc) :
@@ -18,27 +20,31 @@ Quartz::Entity::Entity(DeviceContext* dc) :
 void Quartz::Entity::setSprite(const sf::Sprite& sprite)
 {
 	m_Sprite = sprite; 
-
-#ifdef DRAW_DEBUG_SHAPE
-	m_debugShape.setSize(sf::Vector2f(m_Sprite.getScale().x * 100, m_Sprite.getScale().y * 100));
-#endif
 }
 
 void Quartz::Entity::setPosition(const Vec2& pos)
 {
+	auto deltaPos = pos - m_Pos;
 	m_Pos = pos;
 	m_Sprite.setPosition(m_Pos.x, m_Pos.y);
 
+	m_BoundingBoxData.x += deltaPos.x;
+	m_BoundingBoxData.y += deltaPos.y;
+
+	m_BoundingBoxData.m_BoundingBox.left = m_BoundingBoxData.x;
+	m_BoundingBoxData.m_BoundingBox.top = m_BoundingBoxData.y;
+
 #ifdef DRAW_DEBUG_SHAPE
-	m_debugShape.setPosition(sf::Vector2f(m_Pos.x, m_Pos.y));
-	m_debugShape.setFillColor(sf::Color::Magenta);
+	m_debugShape.setPosition(sf::Vector2f(m_BoundingBoxData.m_BoundingBox.left, m_BoundingBoxData.m_BoundingBox.top));
+	m_debugShape.setFillColor(sf::Color::Transparent);
+	m_debugShape.setOutlineThickness(3.0f);
 	m_debugShape.setOutlineColor(sf::Color::Red);
 #endif
 }
 
 void Quartz::Entity::setAcceleration(const Vec2& vel)
 {
-	// NOTHING
+	// NOTHING; Only Moveable Entities can move
 }
 
 void Quartz::Entity::createAnimationList(const std::string& fileName)
@@ -95,14 +101,40 @@ void Quartz::Entity::setAnimation(const std::string& name)
 	m_Animation = find->second.get();
 }
 
-void Quartz::Entity::setSpriteDimensions(unsigned int w, unsigned int h)
+void Quartz::Entity::setBoundingBoxDimensions(float w, float h)
 {
-	m_SpriteWidth = w;
-	m_SpriteHeight = h;
+	m_BoundingBoxData.width = w;
+	m_BoundingBoxData.height = h;
 
 #ifdef DRAW_DEBUG_SHAPE
-	m_debugShape.setSize(sf::Vector2f(m_SpriteWidth, m_SpriteHeight));
+	m_debugShape.setSize(sf::Vector2f(w, h));
 #endif
+}
+
+void Quartz::Entity::setBoundingBoxPositions(float x, float y)
+{
+	m_BoundingBoxData.x = x;
+	m_BoundingBoxData.y = y;
+
+#ifdef DRAW_DEBUG_SHAPE
+	m_debugShape.setPosition(sf::Vector2f(x, y));
+#endif
+}
+
+void Quartz::Entity::setBoundingBox(float x, float y, float w, float h)
+{
+	m_BoundingBoxData.x = x * WINDOW_WIDTH;
+	m_BoundingBoxData.y = y * WINDOW_HEIGHT;
+	m_BoundingBoxData.width = w;
+	m_BoundingBoxData.height = h;
+
+	m_BoundingBoxData.m_BoundingBox = sf::FloatRect(m_BoundingBoxData.x , m_BoundingBoxData.y, m_BoundingBoxData.width, m_BoundingBoxData.height);
+	
+#ifdef DRAW_DEBUG_SHAPE
+	m_debugShape.setPosition(m_BoundingBoxData.x, m_BoundingBoxData.y);
+	m_debugShape.setSize(sf::Vector2f(w,h));
+#endif
+
 }
 
 void Quartz::Entity::addAcceleration(const Vec2& force)
@@ -130,9 +162,14 @@ sf::Sprite* Quartz::Entity::getSprite()
 	return &m_Sprite;
 }
 
+const Quartz::Entity::BoundingBoxData& Quartz::Entity::getBoundingBoxData() const
+{
+	return m_BoundingBoxData;
+}
+
 void Quartz::Entity::setVelocity(const Vec2& vec)
 {
-	// NOTHING
+	// NOTHING; only Moveable Entities can set their velocity
 }
 
 const Quartz::Vec2& Quartz::Entity::getPosition() const

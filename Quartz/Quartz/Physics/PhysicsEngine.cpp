@@ -1,8 +1,10 @@
 #include "PhysicsEngine.h"
 #include "Logger/Logger.h"
 
-
 #include "SFML/Graphics.hpp"
+
+#include<iostream>
+
 
 namespace Quartz
 {
@@ -18,7 +20,7 @@ namespace Quartz
 		// for Debugging
 
 
-		for (auto x : m_Entities)
+		/*for (auto x : m_Entities)
 		{
 			x->addAcceleration(QUARTZ_GRAVITY);
 
@@ -31,8 +33,9 @@ namespace Quartz
 				LOG_INFO("{0}, {1}, {2}", _x, _y, m_tileMap->isCollidable(_x, _y));
 				display = false;
 			}
-		}
+		}*/
 
+		detectCollisions();
 
 
 	}
@@ -68,7 +71,33 @@ namespace Quartz
 	{
 		m_tileMap = tileMap;
 	}
+
 	void PhysicsEngine::detectCollisions()
 	{
+		for (auto a : m_Entities)
+		{
+			for (auto b : m_Entities)
+			{
+				if (a == b)
+					continue;
+
+				checkBoundingBoxCollision(a, b);
+			}
+		}
 	}
+
+	std::optional<PhysicsEngine::CollisionInfo> PhysicsEngine::checkBoundingBoxCollision(Entity* a, Entity* b)
+	{
+		const auto& aBoundingBox = a->getBoundingBoxData();
+		const auto& bBoundingBox = b->getBoundingBoxData();
+
+		if(aBoundingBox.m_BoundingBox.intersects(bBoundingBox.m_BoundingBox))
+		{
+			LOG_INFO("Collision!");
+			return std::make_optional<PhysicsEngine::CollisionInfo>(a, b);
+		}
+
+		return {};
+	}
+
 }
