@@ -71,11 +71,19 @@ namespace Quartz
 
 		virtual void setBoundingBox(float x, float y, float w, float h);
 
+		virtual void setVelocityX(float x);
+
+		virtual void setVelocityY(float y);
+
 		virtual void addAcceleration(const Vec2& force);
 
 		virtual void update(float dt);
 
 		virtual void render() const;
+
+		virtual void addVelocity(const Vec2& vel);
+
+		virtual Vec2 getVelocity() const;
 
 		virtual sf::Sprite* getSprite();
 

@@ -53,6 +53,8 @@ namespace Quartz
 
 		float getPositionY() const;
 
+		virtual void addVelocity(const Vec2& vel) override;
+
 	private:
 
 		virtual void setToAnimation(const std::string& textureName, const std::string& animationName);

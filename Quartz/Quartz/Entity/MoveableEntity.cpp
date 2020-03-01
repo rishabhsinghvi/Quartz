@@ -18,40 +18,17 @@ namespace Quartz
 	{	
 	}
 
-	void MoveableEntity::setSprite(const sf::Sprite& sprite)
-	{
-		Entity::setSprite(sprite);
-	}
+	
 
-	void MoveableEntity::update(float dt)
-	{
-		Entity::update(dt);
-	}
-
-	void MoveableEntity::render() const
-	{
-		Entity::render();
-	}
-
-	sf::Sprite* MoveableEntity::getSprite()
-	{
-		return Entity::getSprite();
-	}
-
-	const Vec2& MoveableEntity::getPosition() const
-	{
-		return Entity::getPosition();
-	}
-
-	const Vec2& MoveableEntity::getVelocity() const
+	Vec2 MoveableEntity::getVelocity() const
 	{
 		return m_Vel;
 	}
 
-	void MoveableEntity::setPosition(const Vec2& pos)
+	/*void MoveableEntity::setPosition(const Vec2& pos)
 	{
 		Entity::setPosition(pos);
-	}
+	}*/
 
 	void MoveableEntity::setVelocity(const Vec2& vel)
 	{
@@ -68,21 +45,19 @@ namespace Quartz
 		return m_Direction;
 	}
 
-	void MoveableEntity::createAnimationList(const std::string& fileName)
-	{
-		Entity::createAnimationList(fileName);
+	
 
+	void MoveableEntity::setVelocityX(float x)
+	{
+		m_Vel.x = x;
 	}
 
-	void MoveableEntity::setAnimation(const std::string& name)
+	void MoveableEntity::setVelocityY(float y)
 	{
-		Entity::setAnimation(name);
+		m_Vel.y = y;
 	}
 
-	void MoveableEntity::setBoundingBoxDimensions(unsigned int w, unsigned int h)
-	{
-		Entity::setBoundingBoxDimensions(w, h);
-	}
+
 
 	void MoveableEntity::addAcceleration(const Vec2& force)
 	{

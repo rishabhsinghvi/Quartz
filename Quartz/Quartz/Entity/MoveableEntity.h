@@ -28,19 +28,9 @@ namespace Quartz
 
 		MoveableEntity(DeviceContext* w);
 
-		virtual void setSprite(const sf::Sprite& sprite) override;
 
-		virtual void update(float dt) override;
+		virtual Vec2 getVelocity() const override;
 
-		virtual void render() const override;
-
-		virtual sf::Sprite* getSprite() override;
-
-		virtual const Vec2& getPosition() const;
-
-		const Vec2& getVelocity() const;
-
-		virtual void setPosition(const Vec2& pos);
 
 		virtual	void setVelocity(const Vec2& vel);
 
@@ -50,11 +40,9 @@ namespace Quartz
 
 		virtual Direction getDirection() const;
 
-		virtual void createAnimationList(const std::string& fileName);
+		virtual void setVelocityX(float x) override;
 
-		virtual void setAnimation(const std::string& name);
-
-		virtual void setBoundingBoxDimensions(unsigned int w, unsigned int h);
+		virtual void setVelocityY(float y) override;
 
 		void addAcceleration(const Vec2& force);
 

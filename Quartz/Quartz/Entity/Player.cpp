@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "ResourceManager.h"
+#include "InputHandler.h"
 #include "Logger/Logger.h"
 
 #define KEY_PRESSED(x) sf::Keyboard::isKeyPressed(sf::Keyboard::##x)
@@ -22,35 +23,12 @@ namespace Quartz
 
 	void Player::update(float dt)
 	{
-		
 
-		// Run
-		if (KEY_PRESSED(D) && KEY_PRESSED(LShift) && MOUSE_PRESSED(Left))
+		auto input = m_deviceContext->m_inputHandler->getUserInput();
+
+		switch (input)
 		{
-			if (m_State != Player::ActionState::RunningSlashing)
-			{
-				m_State = Player::ActionState::RunningSlashing;
-
-				setToAnimation("REAPER_RUNNING_SLASHING_RIGHT", "RUNNING_SLASHING_RIGHT");
-			}
-			else
-			{
-				if (m_Animation->isAnimationDone())
-				{
-					m_State = Player::ActionState::Running;
-					setToAnimation("REAPER_RUNNING_RIGHT", "RUNNING_RIGHT");
-				}
-				else
-				{
-					auto deltaPos = (m_Vel * RUNNING_SPEEDUP) * dt;
-					setPosition(m_Pos + deltaPos);
-					/*m_Pos += (m_Vel * RUNNING_SPEEDUP) * dt;
-					m_Sprite.setPosition(m_Pos.x, m_Pos.y);*/
-					m_Animation->update(dt);
-				}
-			}
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+		case Action::A_RunRight:
 		{
 			if (m_Direction == MoveableEntity::Direction::Left || m_State != Player::ActionState::Running)
 			{
@@ -61,124 +39,202 @@ namespace Quartz
 			}
 			else
 			{
-				/*m_Pos += (m_Vel * RUNNING_SPEEDUP) * dt;
-				m_Sprite.setPosition(m_Pos.x, m_Pos.y);*/
-				auto deltaPos = (m_Vel * RUNNING_SPEEDUP) * dt;
-				setPosition(m_Pos + deltaPos);
+				addVelocity(Vec2(100.f, 0.f));
 				m_Animation->update(dt);
-				m_deviceContext->m_resourceManager->playSound("RUNNING_AUDIO");
 			}
+			break;
 		}
 
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+		case Action::A_RunLeft:
 		{
 			if (m_Direction == MoveableEntity::Direction::Right || m_State != Player::ActionState::Running)
 			{
 				m_State = Player::ActionState::Running;
-				m_Direction = MoveableEntity::Direction::Left;
+				m_Direction = MoveableEntity::Direction::Right;
 
 				setToAnimation("REAPER_RUNNING_LEFT", "RUNNING_LEFT");
 			}
 			else
 			{
-				//m_Pos -= (m_Vel * RUNNING_SPEEDUP) * dt;
-				//m_Sprite.setPosition(m_Pos.x, m_Pos.y);
-
-				auto deltaPos = (m_Vel * RUNNING_SPEEDUP) * dt;
-				setPosition(m_Pos - deltaPos);
+				addVelocity(Vec2(-100.f, 0.f));
 				m_Animation->update(dt);
 			}
+			break;
 		}
 
-		// Walk
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		case Action::A_None:
+		default:
 		{
-
-			 if (m_Direction == MoveableEntity::Direction::Left || m_State != Player::ActionState::Moving)
-			{
-				m_State = Player::ActionState::Moving;
-				m_Direction = MoveableEntity::Direction::Right;
-
-				setToAnimation("REAPER_WALKING_RIGHT", "WALKING_RIGHT");
-			}
-			else if (m_Direction == MoveableEntity::Direction::Right)
-			{
-				auto deltaPos = m_Vel * dt;
-				setPosition(m_Pos + deltaPos);
-				//m_Sprite.setPosition(m_Pos.x, m_Pos.y);
-				m_Animation->update(dt);
-			}
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		{
-			if (m_Direction == MoveableEntity::Direction::Right || m_State != Player::ActionState::Moving)
-			{
-				m_State = Player::ActionState::Moving;
-				m_Direction = MoveableEntity::Direction::Left;
-
-				setToAnimation("REAPER_WALKING_LEFT", "WALKING_LEFT");
-			}
-			else if (m_Direction == MoveableEntity::Direction::Left)
-			{
-				//m_Pos -= (m_Vel * dt);
-				//m_Sprite.setPosition(m_Pos.x, m_Pos.y);
-				auto deltaPos = m_Vel * dt;
-				setPosition(m_Pos - deltaPos);
-				m_Animation->update(dt);
-			}
-			
-		}
-
-		else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_State != Player::ActionState::Slashing && m_Direction == MoveableEntity::Direction::Right)
-		{
-			m_State = Player::ActionState::Slashing;
-
-			setToAnimation("REAPER_SLASHING_RIGHT", "SLASHING_RIGHT");
-		}
-
-		else if (m_State == Player::ActionState::Slashing)
-		{
-			if (m_Animation->isAnimationDone())
+			if (m_Direction == MoveableEntity::Direction::Right && m_State != Player::ActionState::Idle)
 			{
 				m_State = Player::ActionState::Idle;
-
 				setToAnimation("REAPER_IDLE_RIGHT", "IDLE_RIGHT");
 			}
-			else
-			{
-				m_Animation->update(dt);
-			}
-		}
-
-
-		//
-		else if (m_Direction == MoveableEntity::Direction::Right)
-		{
-			if (m_State != Player::ActionState::Idle)
+			else if (m_Direction == MoveableEntity::Direction::Left && m_State != Player::ActionState::Idle)
 			{
 				m_State = Player::ActionState::Idle;
-				
-				setToAnimation("REAPER_IDLE_RIGHT", "IDLE_RIGHT");
-			}
-			else
-			{
-				m_Animation->update(dt);
-			}
-		
-		}
-		else if (m_Direction == MoveableEntity::Direction::Left)
-		{
-			if (m_State != Player::ActionState::Idle)
-			{
-				m_State = Player::ActionState::Idle;
-				
 				setToAnimation("REAPER_IDLE_LEFT", "IDLE_LEFT");
 			}
-			else
-			{
-				m_Animation->update(dt);
-			}
+			break;
 		}
+		}
+		
+
+		// Run
+		//if (KEY_PRESSED(D) && KEY_PRESSED(LShift) && MOUSE_PRESSED(Left))
+		//{
+		//	if (m_State != Player::ActionState::RunningSlashing)
+		//	{
+		//		m_State = Player::ActionState::RunningSlashing;
+
+		//		setToAnimation("REAPER_RUNNING_SLASHING_RIGHT", "RUNNING_SLASHING_RIGHT");
+		//	}
+		//	else
+		//	{
+		//		if (m_Animation->isAnimationDone())
+		//		{
+		//			m_State = Player::ActionState::Running;
+		//			setToAnimation("REAPER_RUNNING_RIGHT", "RUNNING_RIGHT");
+		//		}
+		//		else
+		//		{
+		//			auto deltaPos = (m_Vel * RUNNING_SPEEDUP) * dt;
+		//			setPosition(m_Pos + deltaPos);
+		//			/*m_Pos += (m_Vel * RUNNING_SPEEDUP) * dt;
+		//			m_Sprite.setPosition(m_Pos.x, m_Pos.y);*/
+		//			m_Animation->update(dt);
+		//		}
+		//	}
+		//}
+		//else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+		//{
+		//	if (m_Direction == MoveableEntity::Direction::Left || m_State != Player::ActionState::Running)
+		//	{
+		//		m_State = Player::ActionState::Running;
+		//		m_Direction = MoveableEntity::Direction::Right;
+
+		//		setToAnimation("REAPER_RUNNING_RIGHT", "RUNNING_RIGHT");
+		//	}
+		//	else
+		//	{
+		//		/*m_Pos += (m_Vel * RUNNING_SPEEDUP) * dt;
+		//		m_Sprite.setPosition(m_Pos.x, m_Pos.y);*/
+		//		auto deltaPos = (m_Vel * RUNNING_SPEEDUP) * dt;
+		//		setPosition(m_Pos + deltaPos);
+		//		m_Animation->update(dt);
+		//		m_deviceContext->m_resourceManager->playSound("RUNNING_AUDIO");
+		//	}
+		//}
+
+		//else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+		//{
+		//	if (m_Direction == MoveableEntity::Direction::Right || m_State != Player::ActionState::Running)
+		//	{
+		//		m_State = Player::ActionState::Running;
+		//		m_Direction = MoveableEntity::Direction::Left;
+
+		//		setToAnimation("REAPER_RUNNING_LEFT", "RUNNING_LEFT");
+		//	}
+		//	else
+		//	{
+		//		//m_Pos -= (m_Vel * RUNNING_SPEEDUP) * dt;
+		//		//m_Sprite.setPosition(m_Pos.x, m_Pos.y);
+
+		//		auto deltaPos = (m_Vel * RUNNING_SPEEDUP) * dt;
+		//		setPosition(m_Pos - deltaPos);
+		//		m_Animation->update(dt);
+		//	}
+		//}
+
+		//// Walk
+		//else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		//{
+
+		//	 if (m_Direction == MoveableEntity::Direction::Left || m_State != Player::ActionState::Moving)
+		//	{
+		//		m_State = Player::ActionState::Moving;
+		//		m_Direction = MoveableEntity::Direction::Right;
+
+		//		setToAnimation("REAPER_WALKING_RIGHT", "WALKING_RIGHT");
+		//	}
+		//	else if (m_Direction == MoveableEntity::Direction::Right)
+		//	{
+		//		auto deltaPos = m_Vel * dt;
+		//		setPosition(m_Pos + deltaPos);
+		//		//m_Sprite.setPosition(m_Pos.x, m_Pos.y);
+		//		m_Animation->update(dt);
+		//	}
+		//}
+		//else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		//{
+		//	if (m_Direction == MoveableEntity::Direction::Right || m_State != Player::ActionState::Moving)
+		//	{
+		//		m_State = Player::ActionState::Moving;
+		//		m_Direction = MoveableEntity::Direction::Left;
+
+		//		setToAnimation("REAPER_WALKING_LEFT", "WALKING_LEFT");
+		//	}
+		//	else if (m_Direction == MoveableEntity::Direction::Left)
+		//	{
+		//		//m_Pos -= (m_Vel * dt);
+		//		//m_Sprite.setPosition(m_Pos.x, m_Pos.y);
+		//		auto deltaPos = m_Vel * dt;
+		//		setPosition(m_Pos - deltaPos);
+		//		m_Animation->update(dt);
+		//	}
+		//	
+		//}
+
+		//else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && m_State != Player::ActionState::Slashing && m_Direction == MoveableEntity::Direction::Right)
+		//{
+		//	m_State = Player::ActionState::Slashing;
+
+		//	setToAnimation("REAPER_SLASHING_RIGHT", "SLASHING_RIGHT");
+		//}
+
+		//else if (m_State == Player::ActionState::Slashing)
+		//{
+		//	if (m_Animation->isAnimationDone())
+		//	{
+		//		m_State = Player::ActionState::Idle;
+
+		//		setToAnimation("REAPER_IDLE_RIGHT", "IDLE_RIGHT");
+		//	}
+		//	else
+		//	{
+		//		m_Animation->update(dt);
+		//	}
+		//}
+
+
+		////
+		//else if (m_Direction == MoveableEntity::Direction::Right)
+		//{
+		//	if (m_State != Player::ActionState::Idle)
+		//	{
+		//		m_State = Player::ActionState::Idle;
+		//		
+		//		setToAnimation("REAPER_IDLE_RIGHT", "IDLE_RIGHT");
+		//	}
+		//	else
+		//	{
+		//		m_Animation->update(dt);
+		//	}
+		//
+		//}
+		//else if (m_Direction == MoveableEntity::Direction::Left)
+		//{
+		//	if (m_State != Player::ActionState::Idle)
+		//	{
+		//		m_State = Player::ActionState::Idle;
+		//		
+		//		setToAnimation("REAPER_IDLE_LEFT", "IDLE_LEFT");
+		//	}
+		//	else
+		//	{
+		//		m_Animation->update(dt);
+		//	}
+		//}
 	}
 
 	void Player::render() const
@@ -239,6 +295,11 @@ namespace Quartz
 	float Player::getPositionY() const
 	{
 		return m_Pos.y;
+	}
+
+	void Player::addVelocity(const Vec2& vel)
+	{
+		m_Vel += vel;
 	}
 
 

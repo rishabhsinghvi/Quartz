@@ -12,9 +12,16 @@
 #include <vector>
 #include<unordered_set>
 #include<optional>
+#include<cstdint>
 
 namespace Quartz
 {
+	namespace Flags
+	{
+		constexpr uint8_t X_DIR = 1 << 0;
+		constexpr uint8_t Y_DIR = 1 << 1;
+	}
+
 	class PhysicsEngine: public Observable
 	{
 	private:
@@ -22,17 +29,23 @@ namespace Quartz
 		{
 			Entity* m_First; 
 			Entity* m_Second;
+			uint8_t m_CollisionFlags = 0;
 
 			CollisionInfo(Entity* a, Entity* b):
 				m_First(a), m_Second(b)
 			{
-			
+				// NOTHING
 			}
 
 			bool operator==(const CollisionInfo& other) const
 			{
 				return (m_First == other.m_First && m_Second == other.m_Second) 
 					|| (m_First == other.m_Second && m_Second == other.m_First);
+			}
+
+			void addFlag(uint8_t flag)
+			{
+				m_CollisionFlags |= flag;
 			}
 
 		};
@@ -48,7 +61,7 @@ namespace Quartz
 		std::vector<Entity*> m_Entities;
 		TileMap* m_tileMap = nullptr;
 		bool m_Running = true;
-		std::unordered_set<CollisionInfo, CollisionInfoHasher> m_CollisionSet;
+		//std::unordered_set<CollisionInfo, CollisionInfoHasher> m_CollisionSet;
 	
 
 	public:
@@ -69,7 +82,9 @@ namespace Quartz
 
 	private:
 
-		void detectCollisions();
+		std::unordered_set<PhysicsEngine::CollisionInfo, PhysicsEngine::CollisionInfoHasher> detectCollisions();
+
+		void resolveCollisions(const std::unordered_set<PhysicsEngine::CollisionInfo, PhysicsEngine::CollisionInfoHasher>&);
 
 		std::optional<CollisionInfo> checkBoundingBoxCollision(Entity* a, Entity* b);
 

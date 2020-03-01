@@ -137,6 +137,16 @@ void Quartz::Entity::setBoundingBox(float x, float y, float w, float h)
 
 }
 
+void Quartz::Entity::setVelocityX(float x)
+{
+	// NOTHING
+}
+
+void Quartz::Entity::setVelocityY(float y)
+{
+	// NOTHING
+}
+
 void Quartz::Entity::addAcceleration(const Vec2& force)
 {
 	// NOTHING
@@ -155,6 +165,16 @@ void Quartz::Entity::render() const
 #ifdef DRAW_DEBUG_SHAPE
 	m_deviceContext->m_Window->getRenderWindow()->draw(m_debugShape);
 #endif
+}
+
+void Quartz::Entity::addVelocity(const Vec2& vel)
+{
+	// NOTHING
+}
+
+Quartz::Vec2 Quartz::Entity::getVelocity() const
+{
+	return Vec2(0.0f, 0.0f);
 }
 
 sf::Sprite* Quartz::Entity::getSprite()

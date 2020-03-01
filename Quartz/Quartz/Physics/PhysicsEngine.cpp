@@ -35,8 +35,15 @@ namespace Quartz
 			}
 		}*/
 
-		detectCollisions();
 
+		auto collisionSet = detectCollisions();
+		resolveCollisions(collisionSet);
+
+		for (auto x : m_Entities)
+		{
+			x->setPosition(x->getPosition() + x->getVelocity() * dt);
+			x->setVelocity(Vec2(0.0f, 0.0f));
+		}
 
 	}
 
@@ -72,8 +79,13 @@ namespace Quartz
 		m_tileMap = tileMap;
 	}
 
-	void PhysicsEngine::detectCollisions()
+	/*
+	*  Considering the relative few amount of entities in a level, a simple
+	* O(n^2) search through all entities would suffice. 
+	*/
+	std::unordered_set<PhysicsEngine::CollisionInfo, PhysicsEngine::CollisionInfoHasher> PhysicsEngine::detectCollisions()
 	{
+		std::unordered_set<CollisionInfo, CollisionInfoHasher> collisionSet;
 		for (auto a : m_Entities)
 		{
 			for (auto b : m_Entities)
@@ -81,8 +93,39 @@ namespace Quartz
 				if (a == b)
 					continue;
 
-				checkBoundingBoxCollision(a, b);
+				auto collisionInfo = checkBoundingBoxCollision(a, b);
+				if (collisionInfo.has_value())
+				{
+					collisionSet.insert(std::move(collisionInfo.value()));
+				}
 			}
+		}
+		return collisionSet;
+	}
+
+	// TERRIBLE. Change this.
+	void PhysicsEngine::resolveCollisions(const std::unordered_set<PhysicsEngine::CollisionInfo, PhysicsEngine::CollisionInfoHasher>& collisionSet)
+	{
+		for (const auto& col : collisionSet)
+		{
+			auto a = col.m_First;
+			auto b = col.m_Second;
+
+			// A very basic collision resolution
+			
+			if (col.m_CollisionFlags & Flags::X_DIR > 0)
+			{
+				a->setVelocityX(0.0f);
+				b->setVelocityX(0.0f);
+			}
+
+			if (col.m_CollisionFlags & Flags::Y_DIR > 0)
+			{
+				a->setVelocityY(0.0f);
+				b->setVelocityY(0.0f);
+			}
+
+			//LOG_INFO("Hello!\n");
 		}
 	}
 
@@ -93,8 +136,23 @@ namespace Quartz
 
 		if(aBoundingBox.m_BoundingBox.intersects(bBoundingBox.m_BoundingBox))
 		{
-			LOG_INFO("Collision!");
-			return std::make_optional<PhysicsEngine::CollisionInfo>(a, b);
+			CollisionInfo colInfo(a, b);
+			
+			// Check whether collision in X direction
+			if ((aBoundingBox.x + aBoundingBox.width > bBoundingBox.x) && (aBoundingBox.x < bBoundingBox.x + bBoundingBox.width))
+			{
+				LOG_INFO("X DIR");
+				colInfo.addFlag(Flags::X_DIR);
+			}
+
+			// Checks whether collision in Y direction
+			if ((aBoundingBox.y < bBoundingBox.y + bBoundingBox.height) && (aBoundingBox.y + aBoundingBox.height > bBoundingBox.height))
+			{
+				LOG_INFO("Y_DIR");
+				colInfo.addFlag(Flags::Y_DIR);
+			}
+
+			return colInfo;
 		}
 
 		return {};

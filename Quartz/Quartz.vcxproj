@@ -78,7 +78,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\Quartz\Quartz;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <PreprocessorDefinitions>QUARTZ_DEBUG;%(PreprocessorDefinitions);DRAW_DEBUG_SHAPE</PreprocessorDefinitions>
+      <PreprocessorDefinitions>QUARTZ_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Quartz\External\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
